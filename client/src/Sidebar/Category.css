@@ -1,0 +1,15 @@
+.main-category-container{
+    display: block;
+    /* flex-direction: column; */
+    /* align-items: center; */
+    height: 100%;
+    width: 15%;
+    position: fixed;
+   
+    
+}
+.category-container{
+    display: grid;
+    margin-left: 1rem;
+    
+}

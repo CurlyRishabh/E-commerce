@@ -1,0 +1,61 @@
+.main-card-container{
+ display: flex ;
+
+ flex-wrap: wrap;
+  margin-left: 10rem;
+  margin-top: 1rem;
+  
+  z-index: -2;
+}
+
+.card-container{
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  border: 2px solid #ededed;
+  padding: 10px;
+  cursor: pointer;
+  width: 14rem ;
+  justify-content: space-between;
+  
+    /* background-color: aqua; */
+}
+.card-img-div{
+  display: grid;
+  height: 10rem;
+  align-items:flex-end;
+  justify-content: center;
+}
+.card-img{
+    width: 10rem;
+    /* height: 6rem; */
+     margin-bottom: 1rem;
+}
+.card-price{
+    display: flex;
+    font-family: 'Courier New', Courier, monospace;
+    justify-content: space-between;
+}
+.card-title {
+  color: black;
+  font-size: large;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  
+  
+}
+
+.bag-icon{
+  justify-content:flex-end;
+}
+.logo-like{
+  display: flex;
+  justify-content: space-between;
+}
+.like{
+  color: #535353;;
+  
+}
+
+.bag-icon {
+  color: #535353;
+}

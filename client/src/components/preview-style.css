@@ -1,0 +1,93 @@
+
+#root {
+  --x: cornflowerblue;
+  --len: 45%;
+}
+
+
+.preview-container {
+ 
+  display: grid;
+  font-family: sans-serif;
+  justify-content: space-evenly;
+  position: absolute;
+  
+  background-color: white;
+  
+}
+
+.preview-image{
+  display: grid;
+  
+}
+.preview-image .like {
+  color: #535353;
+}
+.preview-image .like:hover {
+  color: red;
+}
+.preview-image img {
+  padding-top: 10px;
+  height: 250px;
+ 
+  transform: rotate(-10deg);
+  margin-bottom: 20px;
+
+}
+
+.preview-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2%;
+  font-size: 80%;
+}
+
+.preview-star {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+.preview-star .star {
+  color: var(--x);
+}
+.preview-star p {
+  color: orange;
+}
+
+.preview-button {
+  justify-self: left;
+}
+.preview-button button {
+  background-color: white;
+  margin: 2px;
+  width: 50px;
+  height: 30px;
+  border-radius: 4px;
+  border: 1px solid gray;
+}
+
+.preview-button button:hover {
+  background-color: var(--x);
+  color: white;
+}
+
+.preview-completion {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.preview-completion button {
+  color: white;
+  background-color: orange;
+  border-radius: 5px;
+  font-size: large;
+  height: 50px;
+  width: var(--len);
+  border: 1px white;
+}
+
+.preview-completion button:hover {
+  background-color: var(--x);
+}

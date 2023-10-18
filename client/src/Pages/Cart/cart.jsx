@@ -1,5 +1,5 @@
 import "./cart.css";
-import data from "../Database/data";
+import data from "../../Database/data";
 import {useState} from "react";
 // import { AiFillStar } from "react-icons/ai";
 // import { AiOutlineClose } from "react-icons/ai";
@@ -53,7 +53,7 @@ function Container(x) {
 	);
 }
 
-function App() {
+function Cart() {
 	const [x, setX] = useState([data[0], data[3], data[19]]);
 	const [total, setTotal] = useState(Number(data[0].newPrice) + Number(data[3].newPrice) + Number(data[19].newPrice));
 	function countResult(add) {
@@ -105,4 +105,4 @@ function App() {
 	);
 }
 
-export default App;
+export default Cart;

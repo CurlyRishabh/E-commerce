@@ -42,7 +42,7 @@ const data = [
 		reviews: "(123 reviews)",
 		prevPrice: "$140,00",
 		newPrice: "200",
-		company: "Adidas",
+		company: "Nike",
 		color: "black",
 		category: "sneakers",
 	},

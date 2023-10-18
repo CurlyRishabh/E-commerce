@@ -1,13 +1,13 @@
 import React from "react";
 import {SiNike} from "react-icons/si";
 import {SiAdidas} from "react-icons/si";
-import {SiPuma} from "react-icons/ai";
-import {FcLike} from "react-icons/fc";
+import {SiPuma} from "react-icons/si";
+import {SiV} from "react-icons/si";
 import {AiOutlineEye} from "react-icons/ai";
 import {BsFillBagFill, BsHeartFill} from "react-icons/bs";
-// import {SiNike} from "react-icons/ai";
+
 import Preview from "./preview";
-import { useState } from "react";
+import {useState} from "react";
 
 export default function Card(props) {
 	const [show, setShow] = useState(false);
@@ -15,10 +15,18 @@ export default function Card(props) {
 	function handleClick() {
 		setShow(!show);
 	}
+	function HandleLogo() {
+		let company = props.company;
+		if (company === "Nike") return <SiNike />;
+		else if (company === "Adidas") return <SiAdidas />;
+		else if (company === "Puma") return <SiPuma />;
+		else if (company === "Vans") return <SiV />;
+		else return <>h</>;
+	}
 	return (
 		<div className="card-container">
 			<div className="logo-like">
-				<SiNike />
+				<HandleLogo />
 				{show ? (
 					<Preview
 						img={props.img}

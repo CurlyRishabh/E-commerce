@@ -5,6 +5,7 @@ import {BsHeartFill} from "react-icons/bs";
 export default function Preview(props) {
 	function ProvidDetails() {
 		return (
+			<div className="preview-main">
 			<div className="preview-container">
 				<div className="preview-image">
 					<div style={{display: "flex", justifyContent: "space-between"}}>
@@ -38,6 +39,7 @@ export default function Preview(props) {
 					<button> Buy Now</button>
 					<button> Add to cart</button>
 				</div>
+			</div>
 			</div>
 		);
 	}

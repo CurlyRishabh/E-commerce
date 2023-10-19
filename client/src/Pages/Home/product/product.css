@@ -1,12 +1,14 @@
-.main-card-container{
- display: flex ;
-background-color: #ededed;
- flex-wrap: wrap;
-  margin-left: 11rem;
-  width: 90%;
-  justify-content: space-evenly;
-  margin-top: 1rem;
+.main-card-container {
+    display: flex;
+    background-color: #ededed;
+    flex-wrap: wrap;
+    margin-left: 11rem;
+    /* width: 110%; */
+    justify-content: space-evenly;
+    padding-top: 8%;
+    /* position: absolute; */
 }
+
 
 .card-container{
   display: flex;
@@ -37,6 +39,13 @@ background-color: #ededed;
     display: flex;
     font-family: 'Courier New', Courier, monospace;
     justify-content: space-between;
+    color: green;
+}
+.price del{
+  color: gray;
+}
+.price  a{
+  color:darkorange;
 }
 .card-title {
   color: black;

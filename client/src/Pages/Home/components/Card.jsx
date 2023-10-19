@@ -26,7 +26,7 @@ export default function Card(props) {
 	return (
 		<div className="card-container">
 			<div className="logo-like">
-				<HandleLogo />
+				<BsHeartFill className="like" />
 				{show ? (
 					<Preview
 						img={props.img}
@@ -34,13 +34,13 @@ export default function Card(props) {
 						reviews={props.reviews}
 						category={props.category}
 						newPrice={props.newPrice}
-						prevPrice = {props.prevPrice}
+						prevPrice={props.prevPrice}
 						handleClick={handleClick}
 					/>
 				) : (
 					<AiOutlineEye onClick={handleClick} />
 				)}
-				<BsHeartFill className="like" />
+				<HandleLogo />
 			</div>
 			<div className="card-img-div">
 				<img src={props.img} className="card-img" />
@@ -48,7 +48,7 @@ export default function Card(props) {
 			<h3 className="card-title">{props.title}</h3>
 			<section className="card-price">
 				<div className="price">
-					{props.newPrice} <del>${props.prevPrice}</del>
+					${props.newPrice} <del>${props.prevPrice}</del> <a>({(((props.prevPrice-props.newPrice)/props.prevPrice)*100)>>0 }% off)</a> 
 				</div>
 				<BsFillBagFill className="bag-icon" onClick={props.handleCartClick} />
 			</section>

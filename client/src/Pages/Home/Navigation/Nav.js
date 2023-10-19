@@ -1,16 +1,28 @@
+import { useState } from "react";
 import {FiHeart} from "react-icons/fi";
 import {AiOutlineShoppingCart, AiOutlineUserAdd} from "react-icons/ai";
 import "./Nav.css";
 
-const Nav = ({handleInputChange, query}) => {
+const Nav = ({handleSearch}) => {
+	const [search, setSearch] = useState("");
+	function handleChange(e){
+		handleSearch(e);
+		setSearch(e.target.value);
+	}
+	const handleKeyPress = (event) => {
+		if (event.key === 'Enter') {
+      setSearch('');
+    }
+}
 	return (
 		<nav>
 			<div className="nav-container">
 				<input
 					className="search-input"
 					type="text"
-					onChange={handleInputChange}
-					value={query}
+					onChange={handleChange}
+					value={search}
+					onKeyPress={handleKeyPress}
 					placeholder="Enter your search shoes."
 				/>
 			</div>

@@ -11,7 +11,6 @@ function Home() {
 	const [items, setItems] = useState([]);
 	const [query, setQuery] = useState();
 	const [cart, setCart] = useState([]);
-	const [category, setCategory] = useState("");
 
 	function handleCartClick() {
 		setCart("cartclicked");
@@ -22,13 +21,14 @@ function Home() {
 	}, []);
 
 	function handleClick(x) {
+		console.log(x.target.value)
 		setQuery(x.target.value.toLowerCase());
-		setCategory("white");
+		
 	}
 	function filterProduct() {
 		let product = items;
 		if (query) {
-			product = product.filter((x) => x.category == query || x.color == query);
+			product = product.filter((x) => x.category == query || x.color == query || x.title.toLowerCase().includes(query));
 		}
 		console.log(product);
 		return product.map((x) => (
@@ -52,9 +52,9 @@ function Home() {
 
 	return (
 		<div>
-			<Nav/>
+			<Nav handleSearch={handleClick} />
 			<Category handleChange={handleClick} />
-			<Product  res={filteredItems} />
+			<Product res={filteredItems} />
 		</div>
 	);
 }

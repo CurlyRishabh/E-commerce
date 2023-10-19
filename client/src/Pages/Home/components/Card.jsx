@@ -34,6 +34,7 @@ export default function Card(props) {
 						reviews={props.reviews}
 						category={props.category}
 						newPrice={props.newPrice}
+						prevPrice = {props.prevPrice}
 						handleClick={handleClick}
 					/>
 				) : (

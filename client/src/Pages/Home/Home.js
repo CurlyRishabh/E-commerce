@@ -37,11 +37,12 @@ function Home() {
 				title={x.title}
 				img={x.img}
 				star={x.star}
-				newPrice={x.prevPrice.substring(0, 4)}
-				prevPrice={x.newPrice}
+				newPrice={x.newPrice.substring(0, 4)}
+				prevPrice={x.prevPrice}
 				reviews={x.reviews}
 				handleCartClick={handleCartClick}
 				company = {x.company}
+				category = {x.category}
 			/>
 		));
 		// setCategory("");

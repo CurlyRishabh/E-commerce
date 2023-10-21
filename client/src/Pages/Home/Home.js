@@ -5,6 +5,7 @@ import Product from "./product/product";
 import React, {useState, useEffect} from "react";
 import Category from "./Sidebar/Category";
 
+
 // import "../App.css";
 
 function Home() {
@@ -28,7 +29,7 @@ function Home() {
 	function filterProduct() {
 		let product = items;
 		if (query) {
-			product = product.filter((x) => x.category == query || x.color == query || x.title.toLowerCase().includes(query));
+			product = product.filter((x) => x.category === query || x.color === query || x.title.toLowerCase().includes(query));
 		}
 		console.log(product);
 		return product.map((x) => (

@@ -15,8 +15,11 @@ export default function Category({handleChange}) {
 			<div className="flex flex-col mx-4">
 				<Input color={"text-slate-600 font-semibold"} handleChange={handleChange} value={""} name={"color"} />
 				<Input color={"font-semibold"} handleChange={handleChange} value={"Black"} name={"color"} />
-				<Input color={"text-white font-semibold"} handleChange={handleChange} value={"White"} name={"color"} />
+				<Input color={"text-blue-500 font-semibold "} handleChange={handleChange} value={"Blue"} name={"color"} />
 				<Input color={"text-green-500 font-semibold "} handleChange={handleChange} value={"Green"} name={"color"} />
+				<Input color={"text-red-500 font-semibold "} handleChange={handleChange} value={"Red"} name={"color"} />
+				<Input color={"text-white font-semibold"} handleChange={handleChange} value={"White"} name={"color"} />
+
 			</div>
 		</div>
   );

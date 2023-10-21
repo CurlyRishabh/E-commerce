@@ -26,7 +26,7 @@ export default function Card(props) {
 	return (
 		<div className="card-container">
 			<div className="logo-like">
-				<BsHeartFill className="like" />
+				<BsHeartFill className="text-slate-600 hover:text-red-600 "  />
 				{show ? (
 					<Preview
 						img={props.img}
@@ -45,10 +45,11 @@ export default function Card(props) {
 			<div className="card-img-div">
 				<img src={props.img} className="card-img" />
 			</div>
-			<h3 className="card-title">{props.title}</h3>
+			<h3 className="card-title pt-8">{props.title}</h3>
 			<section className="card-price">
 				<div className="price">
-					${props.newPrice} <del>${props.prevPrice}</del> <a>({(((props.prevPrice-props.newPrice)/props.prevPrice)*100)>>0 }% off)</a> 
+					${props.newPrice} <del>${props.prevPrice}</del>{" "}
+					<a>({(((props.prevPrice - props.newPrice) / props.prevPrice) * 100) >> 0}% off)</a>
 				</div>
 				<BsFillBagFill className="bag-icon" onClick={props.handleCartClick} />
 			</section>

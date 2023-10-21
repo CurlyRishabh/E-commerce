@@ -27,3 +27,7 @@ nav {
   height: 1.5rem;
   margin-left: 2rem;
 }
+
+.profile-container{
+  display: flex;
+}

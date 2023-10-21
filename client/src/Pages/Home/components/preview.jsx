@@ -12,24 +12,23 @@ export default function Preview(props) {
 					<img src={props.img} />
 				</div>
 				<div className="preview-right">
-					<AiOutlineClose className="close" onClick={props.handleClick} />
+					<AiOutlineClose className="justify-self-end" onClick={props.handleClick} />
 					<div className="preview-heading">
-						<h3>
+						<h1 className="text-base">
 							{props.title + " "}({props.category})
 							<div className="preview-star">
 								<AiFillStar className="star" />
 								<AiFillStar className="star" />
 								<AiFillStar className="star" />
 								<AiFillStar className="star" />
-								<p>{props.reviews}</p>
+								<p className="text-xs">{props.reviews}</p>
 							</div>
-						</h3>
+						</h1>
 
 						<p>
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni laudantium pariatur placeat
 							impedit natus corporis nostrum vel sapiente nemo suscipit necessitatibus, harum ipsam voluptate
-							eveniet, omnis dolores praesentium vitae ut aspernatur aut. Nisi quidem delectus consequuntur
-							dolorum laudantium officiis expedita possimus a tempora vel. Dolores perspiciatis dolor
+							eveniet, omnis dolores praesentium vitae ut aspernatur aut. Nisi quidem  officiis expedita possimus a tempora vel. Dolores perspiciatis dolor
 							necessitatibus atque pariatur.
 						</p>
 						<h3>${props.newPrice}.00</h3>

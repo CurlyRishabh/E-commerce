@@ -1,10 +1,11 @@
-import "./cart.css";
+
 import data from "../../Database/data";
-import {useState} from "react";
+import {useState,useEffect} from "react";
+import Cookies from "js-cookie"; 
+
 // import { AiFillStar } from "react-icons/ai";
 // import { AiOutlineClose } from "react-icons/ai";
 // import { BsHeartFill } from "react-icons/bs";
-
 
 function TableQtyCounter(props){
 		const [count, setCount] = useState(1);
@@ -52,8 +53,20 @@ function TableRow(props){
 }
 
 function Cart() {
-	const [x, setX] = useState([data[0], data[3], data[19]]);
+	const [x, setX] = useState([]);
+
 	const [total, setTotal] = useState(Number(data[0].newPrice) + Number(data[3].newPrice) + Number(data[19].newPrice));
+	
+	useEffect(() => {
+		const cookieValue = Cookies.get("productList");
+
+		if (cookieValue) {
+			const parsedData = JSON.parse(cookieValue);
+			
+			setX(parsedData);
+		}
+	}, []);
+	
 	function countResult(add) {
 		setTotal(total + add);
 	}

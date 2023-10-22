@@ -8,11 +8,15 @@ import {BsFillBagFill, BsHeartFill} from "react-icons/bs";
 
 import Preview from "./preview";
 import {useState} from "react";
+import Cookies from "js-cookie";
 
 export default function Card(props) {
 	const [show, setShow] = useState(false);
 
+
 	function handleClick() {
+		const myCookie = Cookies.get("productList");
+		console.log(myCookie);
 		setShow(!show);
 	}
 	function HandleLogo() {
@@ -22,6 +26,15 @@ export default function Card(props) {
 		else if (company === "Puma") return <SiPuma />;
 		else if (company === "Vans") return <SiV />;
 		else return <>h</>;
+	}
+
+	function handleCart(){
+		const item = {
+			title: props.title,
+			img: props.img,
+			newPrice: props.newPrice,
+		};
+		props.handleCartClick(item);
 	}
 	return (
 		<div className="card-container">
@@ -51,7 +64,7 @@ export default function Card(props) {
 					${props.newPrice} <del>${props.prevPrice}</del>{" "}
 					<a>({(((props.prevPrice - props.newPrice) / props.prevPrice) * 100) >> 0}% off)</a>
 				</div>
-				<BsFillBagFill className="bag-icon" onClick={props.handleCartClick} />
+				<BsFillBagFill className="bag-icon" onClick={handleCart} />
 			</section>
 		</div>
 	);

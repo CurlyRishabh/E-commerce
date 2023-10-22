@@ -4,7 +4,7 @@ import Card from "./components/Card";
 import Product from "./product/product";
 import React, {useState, useEffect} from "react";
 import Category from "./Sidebar/Category";
-
+import Cookies from "js-cookie";
 
 // import "../App.css";
 
@@ -13,12 +13,18 @@ function Home() {
 	const [query, setQuery] = useState();
 	const [cart, setCart] = useState([]);
 
-	function handleCartClick() {
-		setCart("cartclicked");
-		console.log(cart);
+	function handleCartClick(x) {
+		Cookies.set("productList", JSON.stringify([...cart, x]), {expires: 1});
+		setCart([...cart, x]);
 	}
 	useEffect(() => {
 		setItems(data);
+		const cookieValue = Cookies.get("productList");
+		if (cookieValue) {
+			const parsedData = JSON.parse(cookieValue);
+
+			setCart(parsedData);
+		}
 	}, []);
 
 	function handleClick(x) {

@@ -8,7 +8,7 @@ import Cookies from "js-cookie";
 
 // import "../App.css";
 
-function Home() {
+function ProductHome() {
 	const [items, setItems] = useState([]);
 	const [query, setQuery] = useState();
 	const [cart, setCart] = useState([]);
@@ -65,4 +65,4 @@ function Home() {
 		</div>
 	);
 }
-export default Home;
+export default ProductHome;

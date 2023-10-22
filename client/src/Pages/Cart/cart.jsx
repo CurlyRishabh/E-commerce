@@ -4,52 +4,50 @@ import {useState} from "react";
 // import { AiFillStar } from "react-icons/ai";
 // import { AiOutlineClose } from "react-icons/ai";
 // import { BsHeartFill } from "react-icons/bs";
-function CounterDetails(props) {
-	const [count, setCount] = useState(1);
 
-	function handleCount(val) {
-		setCount((x) => x + val);
-		props.countResult(val * props.price);
-	}
 
-	return (
-		<div className="counter-detail-container">
-			<div className="counter-container">
-				<button disabled={count <= 0} onClick={() => handleCount(-1)}>
-					-
-				</button>
-				<p>{count}</p>
-				<button onClick={() => handleCount(1)}>+</button>
-			</div>
+function TableQtyCounter(props){
+		const [count, setCount] = useState(1);
 
-			<div className="size-container">
-				<label htmlFor="shoeSize">Size:</label>
-				<select id="shoeSize">
-					<option value="7">7</option>
-					<option value="8">8</option>
-					<option value="9">9</option>
-					<option value="9.5">9.5</option>
-				</select>
-			</div>
+		function handleCount(val) {
+			setCount((x) => x + val);
+		}
 
-			<div className="product-price-container">
-				<button onClick={() => props.del(props.title, count * props.price)}>X</button>
-				<h2>${count * props.price}</h2>
-			</div>
-		</div>
-	);
+		return (
+			<>
+				<td className>
+					<div className="flex w-30">
+						<button
+							className="border m-1 w-8 h-8 text-lg rounded-md bg-slate-300 hover:bg-slate-400 font-semibold"
+							disabled={count <= 0}
+							onClick={() => handleCount(-1)}
+						>
+							-
+						</button>
+						<p className="p-2 font-semibold">{count}</p>
+						<button
+							className="border m-1 w-8 h-8 text-lg rounded-md bg-slate-300 hover:bg-slate-400 font-semibold"
+							onClick={() => handleCount(1)}
+						>
+							+
+						</button>
+					</div>
+				</td>
+				<td>${count * props.newPrice}</td>
+			</>
+		);
 }
 
-function Container(x) {
+function TableRow(props){
 	return (
-		<div className="product-container">
-			<img src={x.img} />
-			<div className="product-descprition">{x.title}</div>
-
-			<div className="select-container">
-				<CounterDetails title={x.title} price={x.newPrice} countResult={x.countResult} del={x.del} />
-			</div>
-		</div>
+		<tr className="p3 text-sm text-gray-700 border-2 h-28 align-middle">
+			<td>
+				<img src={props.img} className="w-36 p-2" />
+			</td>
+			<td>{props.title}</td>
+			<TableQtyCounter countResult={props.countResult} newPrice={props.newPrice} />
+			
+		</tr>
 	);
 }
 
@@ -58,6 +56,9 @@ function Cart() {
 	const [total, setTotal] = useState(Number(data[0].newPrice) + Number(data[3].newPrice) + Number(data[19].newPrice));
 	function countResult(add) {
 		setTotal(total + add);
+	}
+	function handleCount(){
+		
 	}
 	function del(name, val) {
 		const filtered = x.filter((a) => a.title !== name);
@@ -70,37 +71,23 @@ function Cart() {
 	}
 
 	return (
-		<div className="cart-container">
-			<div className="cart-description">
-				<p>Shopping Cart</p>
-				<p
-					className="cart-remove"
-					onClick={() => {
-						setX([]);
-						setTotal(0);
-					}}
-				>
-					Remove all
-				</p>
-			</div>
-			{x.map((x) => (
-				<Container
-					img={x.img}
-					title={x.title}
-					category={x.category}
-					newPrice={x.newPrice}
-					countResult={countResult}
-					del={del}
-				/>
-			))}
-			{total ? (
-				<div className="cart-final">
-					<p>Total: ${total}</p>
-					<button onClick={handleCheckOut}> checkout</button>
-				</div>
-			) : (
-				"empty"
-			)}
+		<div>
+			<h1>Shopping Cart</h1>
+			<table className="ml-10 w-5/6 border-2 table-auto	">
+				<thead className="border bg-gray-300">
+					<tr className="p-3 text-sm font-semibold tracking-wide text-left">
+						<th >Product</th>
+						<th >Name</th>
+						<th >Qty</th>
+						<th >Price</th>
+					</tr>
+				</thead>
+				<tbody>
+					{x.map((y) => (
+						<TableRow handleCount={handleCount}countResult={countResult} newPrice={y.newPrice} title={y.title} img={y.img} />
+					))}
+				</tbody>
+			</table>
 		</div>
 	);
 }

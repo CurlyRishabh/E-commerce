@@ -3,9 +3,9 @@ import shoe from "./ShoesImg/nike-air-max-sneakers.png";
 
 export default function main() {
   return (
-		<div className="flex flex-row h-screen mt-20  bg-orange-200 rounded-2xl">
+		<div className="flex flex-row h-240px mt-20  bg-orange-200 rounded-2xl">
 			<div className="   text-center  basis-2/5 rounded-lg">
-				<p className="font-sans text-5xl mt-24 font-medium text-zinc-700 ">Nike Air Max</p>
+				<p className="font-sans text-5xl mt-16 font-medium text-zinc-700 ">Nike Air Max</p>
 				<p className="font-mono text-4xl mt-4 text-orange-700 font-semibold">Sneaker</p>
 				<p className="font-thin text-lg p-6 mt-10">
 					Lorem ipsum dolor sit amet consectetur adi elit. Neque, perspiciatis quia quibusdam quidem voluptatibus
@@ -17,7 +17,7 @@ export default function main() {
 				</span>
 			</div>
 			<div className="flex basis-3/5 border-white items-center">
-				<img src={shoe} className="-rotate-45 w-11/12"></img>
+				<img src={shoe} className="-rotate-45 w-9/12 ml-20"></img>
 			</div>
 		</div>
   );

@@ -1,5 +1,5 @@
 import React from 'react'
-import shoe from "./ShoesImg/nike-air-max-sneakers.png";
+import shoe from "./ShoesImg/Gallery/nike-air-max-sneakers.png";
 
 export default function main() {
   return (

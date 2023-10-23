@@ -8,18 +8,18 @@ import whiteshoe from "./ShoesImg/Nike-dunk-skate-white.png";
 
 function Shoes(props) {
 	return (
-		<div className={"border-2 h-60 basis-1/4 mx-4 rounded-xl " + props.bg}>
+		<div className={" border-2 h-60 basis-1/4 mx-4 rounded-xl " + props.bg}>
 			{props.src !== yellowshoe ? (
 				<>
-					<img className={"relative bottom-24 left-10 w-60 -rotate-45"} src={props.src} alt="My img" />
+					<img className={"relative bottom-24 left-2 w-60 -rotate-45"} src={props.src} alt="My img" />
 					<p className="relative bottom-16 text-center  font-mono">{props.name}</p>
 					<p className={"relative bottom-16 text-center text-xl font-bold " + props.text}>{props.price}</p>
 				</>
 			) : (
 				<>
-					<img className={"relative bottom-16 left-20 w-44 -rotate-45"} src={props.src} alt="My img" />
-					<p className="text-center font-mono">{props.name}</p>
-					<p className="text-center text-xl font-semibold text-yellow-800">{props.price}</p>
+					<img className={"relative bottom-16 left-8 w-44 -rotate-45"} src={props.src} alt="My img" />
+					<p className="relative text-center font-mono bottom-5">{props.name}</p>
+					<p className="relative bottom-5 text-center text-xl font-semibold text-yellow-800">{props.price}</p>
 				</>
 			)}
 		</div>
@@ -28,7 +28,7 @@ function Shoes(props) {
 
 export default function ShoeList() {
 	return (
-		<div className="flex flex-row b-2 mt-28">
+		<div className="flex flex-row   w-full mt-28">
 			<Shoes bg={"bg-rose-300"} text={"text-rose-800"} src={redshoe} name={"Nike Air Max Red"} price={"$ 150"} />
 			<Shoes
 				bg={"bg-gray-200"}

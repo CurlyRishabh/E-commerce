@@ -2,8 +2,8 @@ import React from 'react'
 
 export default function Footer() {
   return (
-		<div className="flex flex-row p-6 mt-10 border-t-2">
-			<div className=" basis-1/2 flex flex-col mt-10">
+		<div className="flex flex-row  border-t-2 mt-10 pt-10">
+			<div className=" basis-1/2 flex flex-col justify-start">
 				<p>Cool Shop</p>
 				<p>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, aliquid ex. Quo, quas voluptatem beatae
@@ -12,8 +12,8 @@ export default function Footer() {
 				</p>
 				<p> 🍎 🍎 🍎 🍎 🍎 🍎</p>
 			</div>
-			<div className="flex flex-row basis-1/2 m-10 p-2">
-				<div className="basis-1/4 mx-10">
+			<div className="flex flex-row basis-1/2 justify-end">
+				<div className=" ">
 					<p className="font-mono text-xl font-bold">About</p>
 					<p>
 						About <br /> blog <br /> carrers
@@ -22,7 +22,7 @@ export default function Footer() {
 					</p>
 				</div>
 
-				<div className="basis-1/4 mx-10">
+				<div className=" ">
 					<p className="font-mono text-xl font-bold">Support</p>
 					<p>
 						About <br /> blog <br /> carrers <br />
@@ -30,7 +30,7 @@ export default function Footer() {
 					</p>
 				</div>
 
-				<div className="basis-1/4 mx-10">
+				<div className=" ">
 					<p className="font-mono text-xl font-bold">FAQ</p>
 					<p>
 						About <br /> blog <br /> carrers <br />

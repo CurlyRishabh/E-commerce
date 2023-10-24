@@ -37,7 +37,7 @@ export default function Card(props) {
 		props.handleCartClick(item);
 	}
 	return (
-		<div className="w-36 md:w-60 flex flex-col justify-between p-1 border-2 m-1 rounded-lg bg-slate-50">
+		<div className="w-36 my-2 md:mb-6 md:w-60 flex flex-col justify-between p-1 border-2 m-1 rounded-2xl bg-slate-50">
 			<div className="flex justify-between  w-full">
 				<BsHeartFill className="text-slate-600 hover:text-red-600 " />
 				{show ? (

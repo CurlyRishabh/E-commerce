@@ -1,23 +1,28 @@
 import React from 'react'
 import shoe from "./ShoesImg/Gallery/nike-air-max-sneakers.png";
 
-export default function main() {
+export default function main(props) {
   return (
-		<div className="flex flex-row md:h-96 md:m-6 md:mt-36 mt-20  bg-orange-200 rounded-2xl">
-			<div className=" basis-6/12 text-center  rounded-lg">
-				<p className="font-sans text-sm md:text-5xl md:mt-16 font-medium text-zinc-700 ">Nike Air Max</p>
-				<p className="font-mono text-sm md:text-4xl  md:mt-4 text-orange-700 font-semibold">Sneaker</p>
+		<div className="flex flex-row h-40 md:h-96 md:m-6 md:mt-24 mt-20  bg-orange-200 rounded-2xl">
+			<div className="flex flex-col justify-between my-4 basis-6/12 text-center  rounded-lg">
+				<p className="font-sans text-sm md:text-5xl  font-medium text-zinc-700 ">Nike Air Max</p>
+				<p className="font-mono text-sm md:text-4xl   text-orange-700 font-semibold">Sneaker</p>
 				<p className="font-thin text-xs md:text-lg md:p-6 ">
-					Lorem ipsum dolor sit amet consectetur adi elit. Neque, perspiciatis quia quibusdam quidem voluptatibus
-					eligend. Lorem ipsum dolor sit amet consectetur adipisicing.
+					Lorem ipsum dolor sit amet consectetur fsdf elit. Ea,
+					rerum! adi elit. Neque, perspiciati quibusdam quidem volup tatibus ing.
 				</p>
-				<span className="flex flex-row justify-evenly">
-					<p className="font-mono text-sm md:text-4xl text-orange-600 font-semibold">$180</p>{" "}
-					<button className="bg-orange-600 text-xs rounded-xl w-20 md:w-32 text-white">Add</button>
+				<span className="flex flex-row justify-evenly pt-2 md:pb-4">
+					<p className="font-mono text-sm md:text-4xl text-orange-600 font-semibold ">$180</p>{" "}
+					<button
+						onClick={() => props.handleCart("Nike", shoe, "120")}
+						className="bg-orange-600 text-xs md:text-xl rounded-xl w-20 md:w-32 text-white"
+					>
+						Add
+					</button>
 				</span>
 			</div>
-			<div className="flex basis:5/12 border-white items-center justify-center">
-				<img src={shoe} className="-rotate-45 w-52 relative  md:w-96"></img>
+			<div className="flex basis:5/12 border-white items-center pl-2 pb-2 md:pb-12">
+				<img src={shoe} className="-rotate-45 w-36  relative  md:w-96"></img>
 			</div>
 		</div>
   );

@@ -2,17 +2,16 @@ import React from 'react'
 
 export default function Footer() {
   return (
-		<div className="flex flex-row  border-t-2 mt-10 pt-10">
-			<div className=" basis-1/2 flex flex-col justify-start">
+		<div className="flex flex-row   border-t-2 pt-8">
+			<div className=" basis-1/2 flex flex-col pl-2">
 				<p>Cool Shop</p>
 				<p>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, aliquid ex. Quo, quas voluptatem beatae
-					nulla,Quam,sentium dolores voluptatem, illum facere eum aperiam quaerat veniam nihil architecto quo
-					doloribus quod reiciendis voluptates ea sed possimus sint deleniti ducimus!
+					nulla,Quam,sentium dolores voluptatem, illum facere eum aperi.
 				</p>
 				<p> 🍎 🍎 🍎 🍎 🍎 🍎</p>
 			</div>
-			<div className="flex flex-row basis-1/2 justify-end">
+			<div className="flex flex-row basis-1/2 pl-1 md:px-10 justify-between w-100">
 				<div className=" ">
 					<p className="font-mono text-xl font-bold">About</p>
 					<p>

@@ -5,14 +5,14 @@ import React from 'react'
 function Profile(props){
 
     return (
-		<div className="flex flex-col flex-wrap justify-between items-center rounded-xl bg-slate-100 basis-1/3 ">
+		<div className="flex flex-col flex-wrap justify-between items-center rounded-xl bg-slate-200 basis-1/4 ">
 			<img src={props.src} alt="Img" />
 			<p>{props.name}</p>
-			<p>
+			<p className='text-sm my-3'>
 				Lorem ipsum dolor sitaliquid et eligendi nam assumenda, voluptatem
 				cupiditate quisquam commodi facilis eum!
 			</p>
-			<p>5/5 ⭐⭐⭐⭐⭐</p>
+			<p>⭐⭐⭐⭐⭐</p>
 		</div>
 	);
 }
@@ -27,7 +27,7 @@ export default function Testimonials() {
 				illo labore consequuntur dolore maiores magni aliquam, in consequatur necessitatibus dolores quibusdam cum
 				officiis beatae reiciendis eligendi. A molestias repellat tempora sint deleniti illo debitis voluptatum.
 			</p>
-			<div className='flex flex-row  '>
+			<div className='flex flex-row justify-between mpx-10 mb-5 '>
 				<Profile src={""} name={"Rishabh Singh"} />
 				<Profile src={""} name={"Rishabh Singh"} />
 				<Profile src={""} name={"Rishabh Singh"} />

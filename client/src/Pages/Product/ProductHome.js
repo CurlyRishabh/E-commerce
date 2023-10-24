@@ -15,6 +15,7 @@ function ProductHome() {
 	const [cart, setCart] = useState([]);
 
 	function handleCartClick(x) {
+		console.log(x);
 		Cookies.set("productList", JSON.stringify([...cart, x]), {expires: 1});
 		setCart([...cart, x]);
 	}
@@ -59,13 +60,14 @@ function ProductHome() {
 	const filteredItems = filterProduct();
 
 	return (
-		<div className="bg-slate-100">
+		<div className="flex flex-col bg-slate-100">
 			<Nav handleSearch={handleClick} />
-				<MobileNav />
-			<div className="flex mt-7 md:mt-12">
+			<MobileNav />
+			<div className="flex mt-7 md:pt-6">
 				<Category handleChange={handleClick} />
 				<Product res={filteredItems} />
 			</div>
+			
 		</div>
 	);
 }

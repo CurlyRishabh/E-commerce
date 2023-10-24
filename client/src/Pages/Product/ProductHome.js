@@ -5,6 +5,7 @@ import Product from "./product/product";
 import React, {useState, useEffect} from "react";
 import Category from "./Sidebar/Category";
 import Cookies from "js-cookie";
+import MobileNav from "./Navigation/MobileNav";
 
 // import "../App.css";
 
@@ -58,10 +59,13 @@ function ProductHome() {
 	const filteredItems = filterProduct();
 
 	return (
-		<div>
+		<div className="bg-slate-100">
 			<Nav handleSearch={handleClick} />
-			{/* <Category handleChange={handleClick} /> */}
-			<Product res={filteredItems} />
+				<MobileNav />
+			<div className="flex mt-7 md:mt-12">
+				<Category handleChange={handleClick} />
+				<Product res={filteredItems} />
+			</div>
 		</div>
 	);
 }

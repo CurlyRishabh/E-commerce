@@ -15,30 +15,30 @@ const Nav = ({handleSearch}) => {
     }
 }
 	return (
-		<div className="flex border-b-2 border-gray-300 p-2  fixed bg-white w-full h-16 top-0 left-0 items-center">
+		<div className="flex border-b-2 border-gray-300 p-2  fixed bg-white w-full h-10 top-0 left-0 items-center">
 			<Link to="/home">
-				<div className=" h-16 w-20 flex items-center ml-8">Cool Shop</div>
+				<div className=" flex items-center">Home</div>
 			</Link>
 
-			<div className="flex flex-row items-center justify-between ml-24 w-full">
+			<div className="flex flex-row items-center justify-between  w-full">
 				<input
-					className="basis-1/2 bg-slate-100  focus:outline-none rounded-lg relative  h-10"
+					className="bg-slate-100  focus:outline-none rounded-lg relative ml-4 h-8 w-2/5 md:ml-28"
 					type="text"
 					onChange={handleChange}
 					value={search}
 					onKeyPress={handleKeyPress}
-					placeholder="Enter your search shoes."
+					placeholder="search shoes."
 				/>
-				<div className="flex basis 1/2">
+				<div className="flex justify-around w-2/6 md:w-1/6">
 					<Link to="/cart">
-						<AiOutlineShoppingCart className="w-7 h-7 mx-6" />
+						<AiOutlineShoppingCart className="" />
 					</Link>
 
 					<Link to="/like">
-						<FiHeart className="w-7 h-7 mx-6" />
+						<FiHeart className="" />
 					</Link>
 					<Link to="/profile">
-						<AiOutlineUserAdd className="w-7 h-7 mx-6" />
+						<AiOutlineUserAdd className="" />
 					</Link>
 				</div>
 			</div>

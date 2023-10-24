@@ -3,7 +3,7 @@ import Input from '../components/Input';
 
 export default function Category({handleChange}) {
   return (
-		<div className="	fixed p-4 px-5 top-16 rounded-md w-44 h-screen bg-slate-300 ">
+		<div className="hidden md:block md:fixed px-5 top-14 rounded-md w-44 h-screen bg-slate-300 ">
 			<h2 className="py-1 font-bold">Category</h2>
 			<div className="flex flex-col mx-4">
 				<Input handleChange={handleChange} value={""} name={"category"} />

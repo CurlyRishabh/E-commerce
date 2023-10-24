@@ -37,11 +37,11 @@ export default function Card(props) {
 		props.handleCartClick(item);
 	}
 	return (
-		<div className="w-36 md:w-60 flex flex-col justify-between p-1 border-2 m-1 rounded-lg">
+		<div className="w-36 md:w-60 flex flex-col justify-between p-1 border-2 m-1 rounded-lg bg-slate-50">
 			<div className="flex justify-between  w-full">
 				<BsHeartFill className="text-slate-600 hover:text-red-600 " />
 				{show ? (
-					<Preview
+					<Preview 
 						img={props.img}
 						title={props.title}
 						reviews={props.reviews}
@@ -51,7 +51,7 @@ export default function Card(props) {
 						handleClick={handleClick}
 					/>
 				) : (
-					<AiOutlineEye onClick={handleClick} />
+					<AiOutlineEye className="hidden md:inline-block" onClick={handleClick} />
 				)}
 				<HandleLogo />
 			</div>

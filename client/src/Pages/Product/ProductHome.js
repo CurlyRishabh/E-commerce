@@ -52,7 +52,7 @@ function ProductHome() {
 				category = {x.category}
 			/>
 		));
-		// setCategory("");
+		
 	}
 
 	const filteredItems = filterProduct();
@@ -60,7 +60,7 @@ function ProductHome() {
 	return (
 		<div>
 			<Nav handleSearch={handleClick} />
-			<Category handleChange={handleClick} />
+			{/* <Category handleChange={handleClick} /> */}
 			<Product res={filteredItems} />
 		</div>
 	);

@@ -37,9 +37,9 @@ export default function Card(props) {
 		props.handleCartClick(item);
 	}
 	return (
-		<div className="card-container">
-			<div className="logo-like">
-				<BsHeartFill className="text-slate-600 hover:text-red-600 "  />
+		<div className="w-36 md:w-60 flex flex-col justify-between p-1 border-2 m-1 rounded-lg">
+			<div className="flex justify-between  w-full">
+				<BsHeartFill className="text-slate-600 hover:text-red-600 " />
 				{show ? (
 					<Preview
 						img={props.img}
@@ -55,17 +55,19 @@ export default function Card(props) {
 				)}
 				<HandleLogo />
 			</div>
-			<div className="card-img-div">
-				<img src={props.img} className="card-img" />
+			<div className="h-32 md:h-48 items-end justify-center flex">
+				<img src={props.img} className="w-28 md:w-44" />
 			</div>
-			<h3 className="card-title pt-8">{props.title}</h3>
-			<section className="card-price">
-				<div className="price">
-					${props.newPrice} <del>${props.prevPrice}</del>{" "}
-					<a>({(((props.prevPrice - props.newPrice) / props.prevPrice) * 100) >> 0}% off)</a>
+			<h3 className="text-xs font-normal mt-2 text-gray-600 md:text-base md:mt-4">{props.title}</h3>
+			<div className="flex justify-between w-full items-center">
+				<div className="text-xs mt-1 md:text-base ">
+					${props.newPrice} <del className="text-gray-600 font-thin">${props.prevPrice}</del>{" "}
+					<span className="text-green-600 ">
+						({(((props.prevPrice - props.newPrice) / props.prevPrice) * 100) >> 0}% off)
+					</span>
 				</div>
-				<BsFillBagFill className="bag-icon" onClick={handleCart} />
-			</section>
+				<BsFillBagFill  onClick={handleCart} />
+			</div>
 		</div>
 	);
 }

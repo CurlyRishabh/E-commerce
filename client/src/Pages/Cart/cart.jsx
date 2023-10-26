@@ -12,6 +12,7 @@ function TableQtyCounter(props){
 
 		function handleCount(val) {
 			setCount((x) => x + val);
+			props.countResult(val*props.newPrice);
 		}
 
 		return (
@@ -34,14 +35,16 @@ function TableQtyCounter(props){
 						</button>
 					</div>
 				</td>
-				<td>${count * props.newPrice}</td>
-				<td className="">
-					<button
-						onClick={() => props.handleCloseClick(props.title)}
-						className="relative text-base left-9  w-6  rounded-full text-white bg-rose-500"
-					>
-						x
-					</button>
+				<td>
+					<div className="flex items-center justify-center">
+						<p className="absolute">${count * props.newPrice}</p>
+						<button
+							onClick={() => props.handleCloseClick(props.title, -1*count * props.newPrice)}
+							className=" absolute right-1 md:right-6 text-base  w-6	  rounded-full text-white bg-rose-500"
+						>
+							x
+						</button>
+					</div>
 				</td>
 			</>
 		);
@@ -51,11 +54,16 @@ function TableQtyCounter(props){
 function TableRow(props){
 	return (
 		<tr className="p3  text-xs text-gray-700 border-2 h-20 ">
-			<td>
-				<img src={props.img} className="w-28 pb-4" />
+			<td className="justify-center flex">
+				<img src={props.img} className="w-28 pb-4 " />
 			</td>
 			<td>{props.title}</td>
-			<TableQtyCounter title={props.title} handleCloseClick={props.handleCloseClick} countResult={props.countResult} newPrice={props.newPrice} />
+			<TableQtyCounter
+				title={props.title}
+				handleCloseClick={props.handleCloseClick}
+				countResult={props.countResult}
+				newPrice={props.newPrice}
+			/>
 		</tr>
 	);
 }
@@ -64,8 +72,9 @@ function Cart() {
 	const [x, setX] = useState([]);
 
 	const [total, setTotal] = useState(Number(data[0].newPrice) + Number(data[3].newPrice) + Number(data[19].newPrice));
-	function handleCloseClick(title) {
-		console.log(title);
+	function handleCloseClick(title, price) {
+		console.log(title ,price);
+		countResult(price)
 		const temp = x.filter((y) => y.title !== title);
 		console.log(temp);
 		if(temp.length===0)
@@ -81,7 +90,10 @@ function Cart() {
 
 		if (cookieValue) {
 			const parsedData = JSON.parse(cookieValue);
-			console.log("hello");
+			
+const totalPrice = parsedData.reduce((total, product) => total + parseFloat(product.newPrice), 0);
+setTotal(totalPrice)
+console.log(totalPrice);
 			setX(parsedData);
 		}
 	}, []);
@@ -92,35 +104,33 @@ function Cart() {
 	
 
 	return (
-		<div>
+		<div className="flex flex-col justify-center">
 			<h1>Shopping Cart</h1>
-			<div className="w-full p-2">
-				<table className="  m-3 border-2 w-5/6 text-center	">
-					<thead className="border bg-gray-300 ">
-						<tr className="p-3 text-sm font-semibold ">
-							<th>Product</th>
-							<th>Name</th>
-							<th>Qty</th>
-							<th>
-								Price
-								
-							</th>
-							<th className=""></th>
-						</tr>
-					</thead>
-					<tbody>
-						{x.map((y) => (
-							<TableRow
-								
-								countResult={countResult}
-								handleCloseClick={handleCloseClick}
-								newPrice={y.newPrice}
-								title={y.title}
-								img={y.img}
-							/>
-						))}
-					</tbody>
-				</table>
+
+			<table className="  m-3 border-2 w-5/6 text-center	">
+				<thead className="border bg-gray-300 ">
+					<tr className="p-3 text-sm font-semibold ">
+						<th>Product</th>
+						<th>Name</th>
+						<th>Qty</th>
+						<th>Price</th>
+					</tr>
+				</thead>
+				<tbody>
+					{x.map((y) => (
+						<TableRow
+							countResult={countResult}
+							handleCloseClick={handleCloseClick}
+							newPrice={y.newPrice}
+							title={y.title}
+							img={y.img}
+						/>
+					))}
+				</tbody>
+			</table>
+			<div className="flex justify-between mx-3 my-2 rounded-md items-center border-2 w-5/6  p-4 ">
+				<p className="font-medium">Sub-Total: ${total}</p>
+				<button className="bg-blue-600 px-2 h-8 rounded-lg text-white font-semibold ">Checkout</button>
 			</div>
 		</div>
 	);

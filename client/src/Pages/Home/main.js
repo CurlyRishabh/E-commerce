@@ -3,8 +3,8 @@ import shoe from "./ShoesImg/Gallery/nike-air-max-sneakers.png";
 
 export default function main(props) {
   return (
-		<div className="flex flex-row h-40 md:h-96 md:m-6 md:mt-24 mt-20  bg-orange-200 rounded-2xl">
-			<div className="flex flex-col justify-between my-4 basis-6/12 text-center  rounded-lg">
+		<div className="flex flex-row h-40 md:h-96 md:m-6 md:mt-24 mt-20 mx-2  bg-orange-200 rounded-2xl">
+			<div className="flex flex-col justify-between my-4 basis-6/12 text-center  rounded-lg ">
 				<p className="font-sans text-sm md:text-5xl  font-medium text-zinc-700 ">Nike Air Max</p>
 				<p className="font-mono text-sm md:text-4xl   text-orange-700 font-semibold">Sneaker</p>
 				<p className="font-thin text-xs md:text-lg md:p-6 ">

@@ -15,29 +15,38 @@ import whiteshoe from "./ShoesImg/Gallery/Nike-dunk-skate-white.png";
 import mainshoe from "./ShoesImg/Gallery/nike-air-max-sneakers.png";
 
 //logo
-import {AiOutlineShoppingCart} from "react-icons/ai";
-
+import {AiOutlineShoppingCart, AiOutlineUserAdd} from "react-icons/ai";
+import {BiSolidStore} from "react-icons/bi";
 //links
 import {Link} from "react-router-dom";
 
 export default function Home() {
 
 const [cart, setCart] = useState([]);
+const [cartCount, setCartCount] = useState(0);
 	useEffect(() => {
 		const cookieValue = Cookies.get("productList");
 		if (cookieValue) {
 			const parsedData = JSON.parse(cookieValue);
 
+			setCartCount(parsedData.length);
 			setCart(parsedData);
 		}
+			
+			
 	}, []);
 
 
 
 	function handleCartClick(x) {
-		console.log(x);
+		
 		Cookies.set("productList", JSON.stringify([...cart, x]), {expires: 1});
-		setCart([...cart, x]);
+		const temp = [...cart, x];
+		setCartCount(temp.length);
+		setCart(temp);
+
+			console.log(cartCount);
+		
 	}
 	function handleCart(name,pic, cost) {
 		
@@ -57,16 +66,17 @@ const [cart, setCart] = useState([]);
 				<Link to="/home">
 					<div className="p-2 border-2">Cool Shop</div>
 				</Link>
-				<div className="flex">
+				<div className="flex justify-around w-2/6 md:w-1/6">
 					<Link to="/products">
-						<div className="p-2 font-semibold text-xl text-gray-700">Shop</div>
+						<BiSolidStore className="w-6 h-6" />
 					</Link>
-					<Link to="/cart">
-						<AiOutlineShoppingCart className="  w-7 h-7    mt-2 md:mr-10 md:ml-6 text-orange-400" />
+					<Link className="flex " to="/cart">
+						<AiOutlineShoppingCart className="w-6 h-6 " />
+						{ cartCount >0 ?<p className="relative bottom-2 text-red-600  font-semibold ">{cartCount}</p>:<></>}
 					</Link>
-					<button className=" h-8 md:h-10 md:mr-10 md:w-20 md:text-lg rounded-md font-mono text-white text-xs bg-orange-400">
-						Login
-					</button>
+					<Link to="/profile">
+						<AiOutlineUserAdd className="w-6 h-6" />
+					</Link>
 				</div>
 			</div>
 			<Main handleCart={handleCart} />
@@ -99,7 +109,7 @@ const [cart, setCart] = useState([]);
 				/>
 				<Gallery
 					handleCart={handleCart}
-					price={"150"}
+					price={"180"}
 					Pt={"text-orange-400"}
 					butt={"bg-orange-400"}
 					bg={"bg-orange-200"}
@@ -139,7 +149,7 @@ const [cart, setCart] = useState([]);
 				/>
 				<Gallery
 					handleCart={handleCart}
-					price={"150"}
+					price={"160"}
 					Pt={"text-zinc-400"}
 					butt={"bg-zinc-400"}
 					bg={"bg-zinc-300"}

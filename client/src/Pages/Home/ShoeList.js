@@ -45,7 +45,7 @@ export default function ShoeList(props) {
 				bg={"bg-blue-300"}
 				text={"text-blue-800"}
 				src={blueshoe}
-				name={"Nike Air Max Red"}
+				name={"Nike Air Max Blue"}
 				price={"150"}
 				cart={"bg-blue-600"}
 			/>

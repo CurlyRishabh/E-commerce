@@ -3,9 +3,14 @@ import data from "../../Database/data";
 import {useState,useEffect} from "react";
 import Cookies from "js-cookie"; 
 
-// import { AiFillStar } from "react-icons/ai";
-// import { AiOutlineClose } from "react-icons/ai";
-// import { BsHeartFill } from "react-icons/bs";
+import {FiHeart} from "react-icons/fi";
+import {MdProductionQuantityLimits} from "react-icons/md";
+
+import {BiSolidStore} from "react-icons/bi";
+import {AiOutlineShoppingCart, AiOutlineUserAdd,AiOutlineHome} from "react-icons/ai";
+
+import {Link} from "react-router-dom";
+
 
 function TableQtyCounter(props){
 		const [count, setCount] = useState(1);
@@ -40,7 +45,7 @@ function TableQtyCounter(props){
 						<p className="absolute">${count * props.newPrice}</p>
 						<button
 							onClick={() => props.handleCloseClick(props.title, -1*count * props.newPrice)}
-							className=" absolute right-1 md:right-6 text-base  w-6	  rounded-full text-white bg-rose-500"
+							className=" absolute right-1 md:right-4 text-base  w-6	  rounded-full text-white bg-rose-500"
 						>
 							x
 						</button>
@@ -70,15 +75,18 @@ function TableRow(props){
 
 function Cart() {
 	const [x, setX] = useState([]);
-
-	const [total, setTotal] = useState(Number(data[0].newPrice) + Number(data[3].newPrice) + Number(data[19].newPrice));
+	const [empty,setEmpty]=useState(false)
+	const [total, setTotal] = useState(0);
 	function handleCloseClick(title, price) {
 		console.log(title ,price);
 		countResult(price)
 		const temp = x.filter((y) => y.title !== title);
 		console.log(temp);
-		if(temp.length===0)
-			Cookies.set("productList", JSON.stringify([]), {expires: 1});
+		if(temp.length===0){
+			Cookies.set("productList", JSON.stringify([]), {expires: 1});	
+			setEmpty(true)
+			
+		}
 		else
 			Cookies.set("productList", JSON.stringify(temp), {expires: 1});
 		setX(temp)
@@ -104,9 +112,26 @@ console.log(totalPrice);
 	
 
 	return (
-		<div className="flex flex-col justify-center">
-			<h1>Shopping Cart</h1>
-
+		<div className="flex flex-col justify-center items-center">
+			<div className="flex border-b-2 border-gray-300 p-2  fixed bg-white w-full h-10 top-0 left-0 justify-between items-center">
+				<Link to="/home">
+					<AiOutlineHome className=" flex items-center w-6 h-6 text-orange-700">Home</AiOutlineHome>
+				</Link>
+				<h1>Shopping Cart</h1>
+				<div className="flex justify-around w-2/6 md:w-1/6">
+					<Link to="/products">
+						<BiSolidStore className="w-6 h-6" />
+					</Link>
+					
+					<Link to="/profile">
+						<AiOutlineUserAdd className="w-6 h-6" />
+					</Link>
+				</div>
+			</div>
+{empty?<div className=" flex mt-7 md:pt-6 h-96 justify-center items-center">
+      <MdProductionQuantityLimits className='w-40 h-40 text-gray-800'/>
+      <p className='font-bold font-mono text-gray-800'>Cart empty</p>
+  </div>:<>
 			<table className="  m-3 border-2 w-5/6 text-center	">
 				<thead className="border bg-gray-300 ">
 					<tr className="p-3 text-sm font-semibold ">
@@ -119,11 +144,11 @@ console.log(totalPrice);
 				<tbody>
 					{x.map((y) => (
 						<TableRow
-							countResult={countResult}
-							handleCloseClick={handleCloseClick}
-							newPrice={y.newPrice}
-							title={y.title}
-							img={y.img}
+						countResult={countResult}
+						handleCloseClick={handleCloseClick}
+						newPrice={y.newPrice}
+						title={y.title}
+						img={y.img}
 						/>
 					))}
 				</tbody>
@@ -132,6 +157,7 @@ console.log(totalPrice);
 				<p className="font-medium">Sub-Total: ${total}</p>
 				<button className="bg-blue-600 px-2 h-8 rounded-lg text-white font-semibold ">Checkout</button>
 			</div>
+						</>}
 		</div>
 	);
 }

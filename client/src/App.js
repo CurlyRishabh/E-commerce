@@ -5,6 +5,7 @@ import ProductHome from "./Pages/Product/ProductHome"
 import Cart from './Pages/Cart/cart';
 
 import Home from "./Pages/Home/Home"
+import Checkout from './Pages/Checkout/Checkout';
 import Footer from "./Pages/Home/Footer";
 
 
@@ -14,9 +15,9 @@ function App(){
 		<BrowserRouter>
 			<Routes>
 				<Route path="/home" element={<Home />}></Route>
-
 				<Route path="/products" element={<ProductHome />}></Route>
 				<Route path="/cart" element={<Cart />}></Route>
+				<Route path="/checkout" element={<Checkout />}></Route>
 			</Routes>
 			<Footer />;
 		</BrowserRouter>

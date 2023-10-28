@@ -7,9 +7,8 @@ export default function main(props) {
 			<div className="flex flex-col justify-between my-4 basis-6/12 text-center  rounded-lg ">
 				<p className="font-sans text-sm md:text-5xl  font-medium text-zinc-700 ">Nike Air Max</p>
 				<p className="font-mono text-sm md:text-4xl   text-orange-700 font-semibold">Sneaker</p>
-				<p className="font-thin text-xs md:text-lg md:p-6 ">
-					Lorem ipsum dolor sit amet consectetur fsdf elit. Ea,
-					rerum! adi elit. Neque, perspiciati quibusdam quidem volup tatibus ing.
+				<p className="font-thin text-xs md:text-lg md:p-6 text-gray-700 ">
+					Indulge in Unmatched Comfort with Our Nike Air Max Collection - Step into Ultimate Style and Comfort.
 				</p>
 				<span className="flex flex-row justify-evenly pt-2 md:pb-4">
 					<p className="font-mono text-sm md:text-4xl text-orange-600 font-semibold ">$180</p>{" "}
@@ -22,7 +21,7 @@ export default function main(props) {
 				</span>
 			</div>
 			<div className="flex basis:5/12 border-white items-center pl-2 pb-2 md:pb-12">
-				<img src={shoe} className="-rotate-45 w-36  relative  md:w-96"></img>
+				<img src={shoe} alt="img" className="-rotate-45 w-36  relative  md:w-96"></img>
 			</div>
 		</div>
   );

@@ -6,8 +6,9 @@ export default function MobileNav(props) {
 			<select
 				className="bg-slate-400 h-6 border-2 w-1/2 ml-4 text-center rounded text-xs"
 				onChange={(e) => props.sortProduct(parseInt(e.target.value))}
+				defaultValue="0"
 			>
-				<option selected value={0}>
+				<option value={0}>
 					Default Sort
 				</option>
 				<option value={1}>Sort price : low to high</option>

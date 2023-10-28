@@ -5,9 +5,9 @@ export default function Footer() {
 		<div className="flex flex-row   border-t-2 pt-8">
 			<div className=" basis-1/2 flex flex-col pl-2">
 				<p>Cool Shop</p>
-				<p>
-					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, aliquid ex. Quo, quas voluptatem beatae
-					nulla,Quam,sentium dolores voluptatem, illum facere eum aperi.
+				<p className='text-s md:text-base'>
+					Discover your perfect pair at our shoe haven. Unparalleled comfort, iconic styles, and unbeatable prices
+					- find your fashion-forward footwear to step into confidence.
 				</p>
 				<p> 🍎 🍎 🍎 🍎 🍎 🍎</p>
 			</div>

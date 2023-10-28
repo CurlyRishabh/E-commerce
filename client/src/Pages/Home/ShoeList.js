@@ -19,7 +19,7 @@ function Shoes(props) {
 }
 
 export default function ShoeList(props) {
-	console.log(props);
+	
 	return (
 		<div className="flex flex-row flex-wrap justify-center w-full mt-10 ">
 			<Shoes

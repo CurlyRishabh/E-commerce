@@ -7,59 +7,54 @@ import Category from "./Sidebar/Category";
 import Cookies from "js-cookie";
 import MobileNav from "./Navigation/MobileNav";
 import ProductEmpty from "./product/ProductEmpty";
-// import "../App.css";
 
 function ProductHome() {
-	// const [items, setItems] = useState([]);
-	const [query, setQuery] = useState();
-	const [cart, setCart] = useState([]);
+	const [query, setQuery] = useState("");
+
 	const [cartCount, setCartCount] = useState(0);
-	const [filteredItems,setFilteredItems]=useState([]);
+	const [filteredItems, setFilteredItems] = useState([]);
 
-
-	function handleCartClick(x) {
-		console.log(x);
-		Cookies.set("productList", JSON.stringify([...cart, x]), {expires: 1});
-		setCart([...cart, x]);
-		setCartCount(cart.length)
-	}
 	useEffect(() => {
-		const temp = listOfProduct(data)	;
-		setFilteredItems(temp);
-		
 		const cookieValue = Cookies.get("productList");
 		if (cookieValue) {
 			const parsedData = JSON.parse(cookieValue);
-
-			setCartCount(parsedData.length);
-			setCart(parsedData);
-
+			let c = 0;
+			for (let i = 0; i < parsedData.length; i++) {
+				c += parsedData[i].qty;
+			}
+			setCartCount(c);
 		}
+		
+		const h = listOfProduct(data);
+		setFilteredItems(h);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+	
+	function handleCartCount(){
+		setCartCount((prev)=> prev+1)
+	}	
 
 	function handleClick(x) {
-		console.log(x.target.value)
+		console.log(x.target.value);
 		const temp = filterProduct(x.target.value.toLowerCase());
 		console.log(temp);
 		setFilteredItems(temp);
 		setQuery(x.target.value.toLowerCase());
-
 	}
-	
 
-	function listOfProduct(shoes){
+	function listOfProduct(shoes) {
 		return shoes.map((x) => (
 			<Card
 				// key={x.title}
 				title={x.title}
 				img={x.img}
 				star={x.star}
-				newPrice={x.newPrice.substring(0, 4)}
+				newPrice={x.newPrice}
 				prevPrice={x.prevPrice}
 				reviews={x.reviews}
-				handleCartClick={handleCartClick}
 				company={x.company}
 				category={x.category}
+				handleCartCount={handleCartCount}
 			/>
 		));
 	}
@@ -67,49 +62,43 @@ function ProductHome() {
 	function filterProduct(fil) {
 		let product = data;
 		if (fil) {
-			product = product.filter((x) => x.category === query || x.color === query || x.title.toLowerCase().includes(query));
+			product = product.filter(
+				(x) => x.category === fil || x.color === fil || x.title.toLowerCase().includes(fil)
+			);
 		}
 		return listOfProduct(product);
-		
 	}
 
-	function sortProduct(c){
-		
+	function sortProduct(c) {
 		let product = data;
 		if (query) {
 			product = product.filter(
 				(x) => x.category === query || x.color === query || x.title.toLowerCase().includes(query)
 			);
 		}
-		if(c===1){
-			
+		if (c === 1) {
 			product.sort((a, b) => parseInt(a.newPrice) - parseInt(b.newPrice));
-			
-		}else if(c===2){
-			product.sort((b,a) => parseInt(a.newPrice, 10) - parseInt(b.newPrice, 10));
-			
-			
+		} else if (c === 2) {
+			product.sort((b, a) => parseInt(a.newPrice, 10) - parseInt(b.newPrice, 10));
 		}
 		console.log(product);
-		const temp=listOfProduct(product)
+		const temp = listOfProduct(product);
 		setFilteredItems(temp);
 	}
-
-	
 
 	return (
 		<div className="flex flex-col bg-slate-100 ">
 			<Nav handleSearch={handleClick} cartCount={cartCount} />
 
 			{filteredItems.length === 0 ? (
-				<ProductEmpty/>
+				<ProductEmpty />
 			) : (
 				<>
-				<MobileNav sortProduct={sortProduct} />
-				<div className="flex mt-7 md:pt-6">
-					<Category handleChange={handleClick} />
-					<Product res={filteredItems} />
-				</div>
+					<MobileNav sortProduct={sortProduct} />
+					<div className="flex mt-7 md:pt-6">
+						<Category handleChange={handleClick} />
+						<Product res={filteredItems} />
+					</div>
 				</>
 			)}
 		</div>

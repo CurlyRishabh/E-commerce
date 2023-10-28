@@ -28,9 +28,13 @@ const [cartCount, setCartCount] = useState(0);
 		const cookieValue = Cookies.get("productList");
 		if (cookieValue) {
 			const parsedData = JSON.parse(cookieValue);
-
-			setCartCount(parsedData.length);
+			let c = 0;
+			for (let i = 0; i < parsedData.length; i++) {
+				c += parsedData[i].qty;
+			}
+			setCartCount(c);
 			setCart(parsedData);
+			
 		}
 			
 			
@@ -40,12 +44,23 @@ const [cartCount, setCartCount] = useState(0);
 
 	function handleCartClick(x) {
 		
-		Cookies.set("productList", JSON.stringify([...cart, x]), {expires: 1});
-		const temp = [...cart, x];
-		setCartCount(temp.length);
-		setCart(temp);
+		
+		const check=cart.findIndex(pr => pr.title === x.title); 
+		let temp=cart;
+		
+		if(check !== -1){
+			temp[check].qty++;
+		}else{
+			 temp = [...cart, x];
+		}
 
-			console.log(cartCount);
+		
+
+		setCartCount((prev)=> prev+1);
+		setCart(temp);
+		
+		Cookies.set("productList", JSON.stringify(temp), {expires: 1});
+		console.log(temp);
 		
 	}
 	function handleCart(name,pic, cost) {
@@ -54,6 +69,7 @@ const [cartCount, setCartCount] = useState(0);
 			title: name,
 			img: pic,
 			newPrice: cost,
+			"qty": 1
 		};
 		console.log(item);
 		handleCartClick(item);
@@ -72,7 +88,11 @@ const [cartCount, setCartCount] = useState(0);
 					</Link>
 					<Link className="flex " to="/cart">
 						<AiOutlineShoppingCart className="w-6 h-6 " />
-						{ cartCount >0 ?<p className="relative bottom-2 text-red-600  font-semibold ">{cartCount}</p>:<></>}
+						{cartCount > 0 ? (
+							<p className="relative bottom-2 text-red-600  font-semibold ">{cartCount}</p>
+						) : (
+							<></>
+						)}
 					</Link>
 					<Link to="/profile">
 						<AiOutlineUserAdd className="w-6 h-6" />
@@ -82,9 +102,9 @@ const [cartCount, setCartCount] = useState(0);
 			<Main handleCart={handleCart} />
 
 			<p className="mt-10 font-mono text-4xl text-orange-600 font-semibold">Top-selling Shoes</p>
-			<p className="font-thin text-xl  text-gray-800 mx-16 mt-3">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam unde eum odit libero pariatur aliquid maxime
-				culpa minima cupiditate assumenda officia ad, tempora repellendus beatae quisquam.
+			<p className="font-thin text-xs md:text-lg  text-gray-800 mx-4 md:mx-10	 mt-3">
+				Discover Unbeatable Styles: Our Top Selling Shoes Showcasing Trendsetting Designs and Unmatched Comfort,
+				Perfect for Every Step You Take.
 			</p>
 
 			<ShoeList handleCart={handleCart} />
@@ -92,9 +112,9 @@ const [cartCount, setCartCount] = useState(0);
 				<button className=" bg-orange-600 rounded-2xl w-40 h-10 text-white mt-10">View All</button>
 			</Link>
 			<p className=" mt-10 font-mono text-4xl text-orange-600 font-semibold ">Our favorite collections</p>
-			<p className="font-thin text-lg  text-gray-800 mx-16 mt-3 mb-4">
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio odit culpa ex pariatur alias, veniam
-				minima iste voluptates possimus dicta?
+			<p className="font-thin text-lg  text-gray-800 mx-10 mt-3 mb-4">
+				Handpicked Elegance: Unveil Our Favorite Collection, Curated with Exclusive Styles and Unparalleled Comfort
+				for the Perfect Fit and Style Statement.
 			</p>
 			<div className="flex flex-wrap">
 				<Gallery

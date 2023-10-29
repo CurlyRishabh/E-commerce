@@ -13,7 +13,7 @@ export default function main(props) {
 				<span className="flex flex-row justify-evenly pt-2 md:pb-4">
 					<p className="font-mono text-sm md:text-4xl text-orange-600 font-semibold ">$180</p>{" "}
 					<button
-						onClick={() => props.handleCart("Nike", shoe, "120")}
+						onClick={() => props.handleCart("Nike Air Max Orange", shoe, "180")}
 						className="bg-orange-600 text-xs md:text-xl rounded-xl w-20 md:w-32 text-white"
 					>
 						Add

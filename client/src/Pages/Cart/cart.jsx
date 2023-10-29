@@ -153,7 +153,10 @@ function Cart() {
 					</table>
 					<div className="flex justify-between mx-3 my-2 rounded-md items-center border-2 w-5/6  p-4 ">
 						<p className="font-medium">Sub-Total: ${total}</p>
+							<Link to="/checkout">
+								
 						<button className="bg-blue-600 px-2 h-8 rounded-lg text-white font-semibold ">Checkout</button>
+							</Link>
 					</div>
 				</>
 			)}

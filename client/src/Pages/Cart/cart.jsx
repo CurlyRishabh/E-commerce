@@ -88,7 +88,7 @@ function Cart() {
 	}
 	useEffect(() => {
 		const cookieValue = Cookies.get("productList");
-
+		console.log("cart", cookieValue);
 		if (cookieValue) {
 			const parsedData = JSON.parse(cookieValue);
 			const totalPrice = parsedData.reduce((total, product) => total + (product.qty*parseFloat(product.newPrice)), 0);

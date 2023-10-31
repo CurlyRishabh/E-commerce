@@ -61,8 +61,8 @@ const handleSubmit = (e) => {
 	const formValid = requiredFields.every((field) => formData[field] !== "");
 
 	if (formValid) {
-		console.log("Form submitted:", formData);
-        const temp=[formData,order,total];
+		const temp = {...formData, total: `$${total}`};
+		console.log("Form submitted:", temp);
 		Cookies.set("OrderList", JSON.stringify(temp), {expires: 1});
 		Cookies.remove("productList");
 

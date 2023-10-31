@@ -18,7 +18,7 @@ const Nav = ({handleSearch,cartCount}) => {
 }
 	return (
 		<div className="flex border-b-2 border-gray-300 p-2  fixed bg-white w-full h-10 top-0 left-0 items-center justify-between">
-			<Link to="/home">
+			<Link to="/">
 				<AiOutlineHome className=" flex items-center w-6 h-6 text-orange-700">Home</AiOutlineHome>
 			</Link>
 

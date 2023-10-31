@@ -14,11 +14,11 @@ function App(){
 	const path = window.location.pathname;
 	console.log(path);
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename="/E-commerce">
 			<Routes>
-				<Route path="/" element={<Navigate replace to="/home" />} />
+			
 
-				<Route path="/home" element={<Home />}></Route>
+				<Route path="/" element={<Home />}></Route>
 				<Route path="/products" element={<ProductHome />}></Route>
 				<Route path="/cart" element={<Cart />}></Route>
 				<Route path="/checkout" element={<Checkout />}></Route>

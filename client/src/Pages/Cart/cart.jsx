@@ -1,12 +1,12 @@
-import data from "../../Database/data";
 import {useState, useEffect} from "react";
 import Cookies from "js-cookie";
 
-import {FiHeart} from "react-icons/fi";
 import {MdProductionQuantityLimits} from "react-icons/md";
 
-import {BiSolidStore} from "react-icons/bi";
-import {AiOutlineShoppingCart, AiOutlineUserAdd, AiOutlineHome} from "react-icons/ai";
+import { AiOutlineUserAdd} from "react-icons/ai";
+import homeP from "../Home/ShoesImg/home.png";
+import shop from "../Home/ShoesImg/SHOP.png";
+
 
 import {Link} from "react-router-dom";
 
@@ -108,13 +108,13 @@ function Cart() {
 	return (
 		<div className="flex flex-col justify-center items-center">
 			<div className="flex border-b-2 border-gray-300 p-2  fixed bg-white w-full h-10 top-0 left-0 justify-between items-center">
-				<Link to="/">
-					<AiOutlineHome className=" flex items-center w-6 h-6 text-orange-700">Home</AiOutlineHome>
+				<Link className="flex items-center w-7 h-7" to="/">
+					<img src={homeP} alt="Shop" className="w-6 relative hover:w-7 " />
 				</Link>
-				<h1>Shopping Cart</h1>
+				<h1 className="text-rose-600 md:text-lg font-semibold font-mono">Shopping Cart</h1>
 				<div className="flex justify-around w-2/6 md:w-1/6">
-					<Link to="/products">
-						<BiSolidStore className="w-6 h-6" />
+					<Link to="/products" className="w-7 h-7">
+						<img src={shop} alt="shop" className="w-6 relative hover:w-7 " />
 					</Link>
 
 					<Link to="/profile">
@@ -153,10 +153,9 @@ function Cart() {
 					</table>
 					<div className="flex justify-between mx-3 my-2 rounded-md items-center border-2 w-5/6  p-4 ">
 						<p className="font-medium">Sub-Total: ${total}</p>
-							<Link to="/checkout">
-								
-						<button className="bg-blue-600 px-2 h-8 rounded-lg text-white font-semibold ">Checkout</button>
-							</Link>
+						<Link to="/checkout">
+							<button className="bg-blue-600 hover:bg-blue:700 px-2 h-8 rounded-lg text-white font-semibold ">Checkout</button>
+						</Link>
 					</div>
 				</>
 			)}

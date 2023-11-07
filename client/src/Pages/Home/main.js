@@ -14,7 +14,7 @@ export default function main(props) {
 					<p className="font-mono text-sm md:text-4xl text-orange-600 font-semibold ">$180</p>{" "}
 					<button
 						onClick={() => props.handleCart("Nike Air Max Orange", shoe, "180")}
-						className="bg-orange-600 text-xs md:text-xl rounded-xl w-20 md:w-32 text-white"
+						className="bg-orange-600 hover:bg-orange-700 border-white border-2 text-xs md:text-xl rounded-xl w-20 md:w-32 text-white"
 					>
 						Add
 					</button>

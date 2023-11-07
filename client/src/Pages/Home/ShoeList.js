@@ -13,7 +13,15 @@ function Shoes(props) {
 			<img className={"relative  w-60 -top-7 right-0 -rotate-45"} src={props.src} alt="My img" />
 			<p className="mt-3 md:mt-12 text-center text-sm md:text-xl font-mono">{props.name}</p>
 			<p className={"text-center text-sm md:text-xl font-bold " + props.text}>$ {props.price}</p>
-			<button onClick={handle} className={"text-white mt-1 text-sm font-mono w-12 rounded-lg md:w-20 md:h-6 md:mt-2 "+props.cart}>Add</button>
+			<button
+				onClick={handle}
+				className={
+					"text-white mt-1 text-sm font-mono w-12 rounded-lg md:w-20 md:h-6 md:mt-2 hover:bg-rose-100 border-white border-2 " +
+					props.cart
+				}
+			>
+				Add
+			</button>
 		</div>
 	);
 }

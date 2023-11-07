@@ -15,8 +15,10 @@ import whiteshoe from "./ShoesImg/Gallery/Nike-dunk-skate-white.png";
 import mainshoe from "./ShoesImg/Gallery/nike-air-max-sneakers.png";
 
 //logo
-import {AiOutlineShoppingCart, AiOutlineUserAdd} from "react-icons/ai";
-import {BiSolidStore} from "react-icons/bi";
+import {AiOutlineUserAdd} from "react-icons/ai";
+import shop from "./ShoesImg/SHOP.png";
+import cartIcon from "./ShoesImg/cart.png"
+
 //links
 import {Link} from "react-router-dom";
 
@@ -80,14 +82,17 @@ const [cartCount, setCartCount] = useState(0);
 		<div className="flex flex-col items-center text-center bg-slate-50  w-full ">
 			<div className="z-10   flex flex-row h-10 md:h-16 justify-between w-full  fixed top-0 left-0 items-center bg-slate-200 border-b-4 border-blue-100">
 				<Link to="/home">
-					<div className="p-2 border-2">Cool Shop</div>
+					<div className="p-2 text-xl md:text-3xl font-semibold text-rose-600 border-2">
+						Cool <span className="text-rose-700"> Shop</span>
+					</div>
 				</Link>
 				<div className="flex justify-around w-2/6 md:w-1/6">
-					<Link to="/products">
-						<BiSolidStore className="w-6 h-6" />
+					<Link to="/products" className="w-7 h-7">
+						<img src={shop} alt="Shop" className="w-6  hover:w-7 " />
 					</Link>
-					<Link className="flex " to="/cart">
-						<AiOutlineShoppingCart className="w-6 h-6 " />
+					<Link className="flex w-8 h-8" to="/cart">
+						<img src={cartIcon} alt="Shop" className="w-6 h-6 hover:w-7 hover:h-7" />
+
 						{cartCount > 0 ? (
 							<p className="relative bottom-2 text-red-600  font-semibold ">{cartCount}</p>
 						) : (
@@ -109,7 +114,9 @@ const [cartCount, setCartCount] = useState(0);
 
 			<ShoeList handleCart={handleCart} />
 			<Link to="/products">
-				<button className=" bg-orange-600 rounded-2xl w-40 h-10 text-white mt-10">View All</button>
+				<button className=" bg-orange-600 hover:bg-orange-700 border-white border-2 rounded-2xl w-40 h-10 text-white mt-10">
+					View All
+				</button>
 			</Link>
 			<p className=" mt-10 font-mono text-4xl text-orange-600 font-semibold ">Our favorite collections</p>
 			<p className="font-thin text-lg  text-gray-800 mx-10 mt-3 mb-4">

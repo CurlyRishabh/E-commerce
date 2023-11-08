@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/E-commerce/static/css/main.a5dd8b81.css",
-    "main.js": "/E-commerce/static/js/main.066aad23.js",
+    "main.css": "/E-commerce/static/css/main.249fad50.css",
+    "main.js": "/E-commerce/static/js/main.659f0b4b.js",
     "static/media/skate-puma.png": "/E-commerce/static/media/skate-puma.9d75281634412e2bb7b5.png",
     "static/media/nike-air-max-sneakers.png": "/E-commerce/static/media/nike-air-max-sneakers.bf2c2fef0b81edcfa845.png",
     "static/media/Nike-Air-force-yellow.png": "/E-commerce/static/media/Nike-Air-force-yellow.364336c5e864549c981a.png",
@@ -11,11 +11,11 @@
     "static/media/nik-air-max-blue.png": "/E-commerce/static/media/nik-air-max-blue.92533136e442ffebdbc9.png",
     "static/media/reebok-skate-sneaker.png": "/E-commerce/static/media/reebok-skate-sneaker.a1dfcaf105a3433230db.png",
     "index.html": "/E-commerce/index.html",
-    "main.a5dd8b81.css.map": "/E-commerce/static/css/main.a5dd8b81.css.map",
-    "main.066aad23.js.map": "/E-commerce/static/js/main.066aad23.js.map"
+    "main.249fad50.css.map": "/E-commerce/static/css/main.249fad50.css.map",
+    "main.659f0b4b.js.map": "/E-commerce/static/js/main.659f0b4b.js.map"
   },
   "entrypoints": [
-    "static/css/main.a5dd8b81.css",
-    "static/js/main.066aad23.js"
+    "static/css/main.249fad50.css",
+    "static/js/main.659f0b4b.js"
   ]
 }

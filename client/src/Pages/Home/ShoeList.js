@@ -9,9 +9,9 @@ function Shoes(props) {
 		props.handleCart(props.name, props.src, props.price);
 	}
 	return (
-		<div className={" border-2 w-64 h-44  basis-1/3 m-6 rounded-xl md:basis-1/5 md:h-72   " + props.bg}>
+		<div className={" border-2 w-64 h-40  basis-1/3 m-6 rounded-xl md:basis-1/5 md:h-72 " + props.bg}>
 			<img className={"relative  w-60 -top-7 right-0 -rotate-45"} src={props.src} alt="My img" />
-			<p className="mt-3 md:mt-12 text-center text-sm md:text-xl font-mono">{props.name}</p>
+			<p className=" md:mt-12 px-1 text-center text-sm font-semibold md:text-xl ">{props.name}</p>
 			<p className={"text-center text-sm md:text-xl font-bold " + props.text}>$ {props.price}</p>
 			<button
 				onClick={handle}

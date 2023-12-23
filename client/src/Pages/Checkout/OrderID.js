@@ -1,6 +1,8 @@
 import React from "react";
 import {useState, useEffect} from "react";
 import Cookies from "js-cookie";
+import Confetti from "react-confetti";
+
 // import OrderList from "./Check"
 
 
@@ -8,6 +10,7 @@ import Cookies from "js-cookie";
 function Details({userInfo}){
 return (
 	<div className="bg-red-100 pb-10">
+		<Confetti />
 		<h2 className="text-2xl font-bold text-center mb-4">Order Information</h2>
 
 		<div className="max-w-md mx-auto bg-gray-100 shadow p-6 rounded-lg">

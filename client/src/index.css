@@ -1,3 +1,45 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+.transition-box {
+  height: 5px;
+  width: 90px;
+  background-color: white;
+  position: absolute;
+  bottom:5px;
+  /* z-index: 100; */
+  border-radius: 10px;
+  
+  transition: width 2s ease-in-out; /* Transition the 'width' property over 1 second with ease timing function */
+}
+
+.transition-box.animate {
+  width: 0px;
+}
+
+.addedBox {
+  width: 120px;
+  height: 80px;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  background-color: lightsalmon;
+  color: white;
+  position: fixed;
+  border: 2px solid wheat ;
+  top: 12%;
+ left: 50%;
+  /* right: 50%; */
+  transform: translate(-50%);
+  display: flex;
+  z-index: 10;
+  justify-content: center;
+  text-align: center;
+}
+
+.addedBox.animate {
+  width: 0px;
+}

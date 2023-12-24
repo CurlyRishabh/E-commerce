@@ -8,8 +8,11 @@ import Cookies from "js-cookie";
 import MobileNav from "./Navigation/MobileNav";
 import ProductEmpty from "./product/ProductEmpty";
 
+import Added from "../Cart/Added";
+
 function ProductHome() {
 	const [query, setQuery] = useState("");
+	const [show, setShow] = useState(false);
 
 	const [cartCount, setCartCount] = useState(0);
 	const [filteredItems, setFilteredItems] = useState([]);
@@ -32,6 +35,12 @@ function ProductHome() {
 	
 	function handleCartCount(){
 		setCartCount((prev)=> prev+1)
+		
+		setShow((prev) => !prev);
+		setTimeout(() => {
+			setShow((prev) => !prev);
+		}, 2500);
+		
 	}	
 
 	function handleClick(x) {
@@ -87,6 +96,8 @@ function ProductHome() {
 	}
 
 	return (
+		<>
+		{show?<Added/>:<></>}
 		<div className="flex flex-col bg-slate-100 ">
 			<Nav handleSearch={handleClick} cartCount={cartCount} />
 
@@ -102,6 +113,7 @@ function ProductHome() {
 				</>
 			)}
 		</div>
+		</>
 	);
 }
 export default ProductHome;

@@ -1,166 +1,354 @@
-import {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import { ThemeProvider } from "../../contexts/ThemeContext";
+import Navigation from "../../components/Navigation";
 
-import {MdProductionQuantityLimits} from "react-icons/md";
+// Import icons
+import { 
+  AiOutlinePlus, 
+  AiOutlineMinus, 
+  AiOutlineDelete,
+  AiOutlineShoppingCart,
+  AiOutlineArrowLeft
+} from "react-icons/ai";
 
-import { AiOutlineUserAdd} from "react-icons/ai";
-import homeP from "../Home/ShoesImg/home.png";
-import shop from "../Home/ShoesImg/SHOP.png";
+// Cart Item Component
+const CartItem = ({ item, onUpdateQuantity, onRemove, index }) => {
+  const [quantity, setQuantity] = useState(item.qty);
 
+  const handleQuantityChange = (newQty) => {
+    if (newQty < 1) return;
+    setQuantity(newQty);
+    onUpdateQuantity(item.title, newQty);
+  };
 
-import {Link} from "react-router-dom";
+  const itemTotal = (quantity * parseFloat(item.newPrice)).toFixed(2);
 
-function TableQtyCounter(props) {
-	const [count, setCount] = useState(props.qty);
+  return (
+    <motion.div
+      className="nike-card p-6 mb-4"
+      initial={{ opacity: 0, x: -50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: 50 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      layout
+    >
+      <div className="flex flex-col md:flex-row items-center gap-6">
+        {/* Product Image */}
+        <motion.div 
+          className="flex-shrink-0"
+          whileHover={{ scale: 1.05 }}
+          transition={{ duration: 0.3 }}
+        >
+          <img
+            src={item.img}
+            alt={item.title}
+            className="w-24 h-24 md:w-32 md:h-32 object-contain rounded-lg bg-nike-gray-50 dark:bg-nike-gray-800 p-2"
+          />
+        </motion.div>
 
-	function handleCount(val) {
-		setCount((x) => x + val);
-		props.countResult(val * props.newPrice);
-	}
+        {/* Product Details */}
+        <div className="flex-1 text-center md:text-left">
+          <h3 className="font-semibold text-lg text-nike-black dark:text-white mb-2">
+            {item.title}
+          </h3>
+          <p className="nike-price text-xl">${item.newPrice}</p>
+        </div>
 
-	return (
-		<>
-			<td className="">
-				<div className="flex items-center justify-center w-30">
-					<button
-						className="border w-6 h-6 flex items-center justify-center  text-lg rounded-md bg-slate-300 hover:bg-slate-400 font-semibold"
-						disabled={count <= 0}
-						onClick={() => handleCount(-1)}
-					>
-						-
-					</button>
-					<p className="p-2 font-semibold">{count}</p>
-					<button
-						className="border w-6 h-6 flex items-center justify-center  text-lg rounded-md bg-slate-300 hover:bg-slate-400 font-semibold"
-						onClick={() => handleCount(1)}
-					>
-						+
-					</button>
-				</div>
-			</td>
-			<td>
-				<div className="flex items-center justify-center">
-					<p className="absolute">${count * props.newPrice}</p>
-					<button
-						onClick={() => props.handleCloseClick(props.title, -1 * count * props.newPrice)}
-						className=" absolute right-1 md:right-4 text-base  w-6	  rounded-full text-white bg-rose-500"
-					>
-						x
-					</button>
-				</div>
-			</td>
-		</>
-	);
-}
+        {/* Quantity Controls */}
+        <div className="flex items-center gap-4">
+          <div className="flex items-center bg-nike-gray-100 dark:bg-nike-gray-800 rounded-lg p-1">
+            <motion.button
+              onClick={() => handleQuantityChange(quantity - 1)}
+              disabled={quantity <= 1}
+              className="p-2 rounded-lg hover:bg-nike-gray-200 dark:hover:bg-nike-gray-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <AiOutlineMinus size={16} />
+            </motion.button>
+            
+            <span className="px-4 py-2 font-semibold text-nike-black dark:text-white min-w-[3rem] text-center">
+              {quantity}
+            </span>
+            
+            <motion.button
+              onClick={() => handleQuantityChange(quantity + 1)}
+              className="p-2 rounded-lg hover:bg-nike-gray-200 dark:hover:bg-nike-gray-700 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <AiOutlinePlus size={16} />
+            </motion.button>
+          </div>
 
-function TableRow(props) {
-	return (
-		<tr className="p3  text-xs text-gray-700 border-2 h-20 ">
-			<td className="justify-center flex">
-				<img src={props.img} className="w-28 pb-4 " />
-			</td>
-			<td>{props.title}</td>
-			<TableQtyCounter
-				title={props.title}
-				handleCloseClick={props.handleCloseClick}
-				countResult={props.countResult}
-				newPrice={props.newPrice}
-				qty={props.qty}
-			/>
-		</tr>
-	);
-}
+          {/* Item Total */}
+          <div className="text-right min-w-[4rem]">
+            <p className="nike-price text-lg">${itemTotal}</p>
+          </div>
 
+          {/* Remove Button */}
+          <motion.button
+            onClick={() => onRemove(item.title)}
+            className="p-2 text-nike-red hover:bg-nike-red/10 rounded-lg transition-colors"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <AiOutlineDelete size={20} />
+          </motion.button>
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+// Empty Cart Component
+const EmptyCart = () => (
+  <motion.div
+    className="text-center py-16"
+    initial={{ opacity: 0, y: 50 }}
+    animate={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.8 }}
+  >
+    <motion.div
+      className="mb-8"
+      animate={{ y: [0, -10, 0] }}
+      transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+    >
+      <AiOutlineShoppingCart className="mx-auto text-nike-gray-400 mb-4" size={120} />
+    </motion.div>
+    
+    <h2 className="nike-section-title mb-4">Your Cart is Empty</h2>
+    <p className="nike-text mb-8 max-w-md mx-auto">
+      Looks like you haven't added any items to your cart yet. 
+      Start shopping to fill it up!
+    </p>
+    
+    <Link to="/products">
+      <motion.button
+        className="nike-btn-primary"
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        START SHOPPING
+      </motion.button>
+    </Link>
+  </motion.div>
+);
+
+// Main Cart Component
 function Cart() {
-	const [x, setX] = useState([]);
-	const [empty, setEmpty] = useState(false);
-	const [total, setTotal] = useState(0);
-	function handleCloseClick(title, price) {
-		console.log(title, price);
-		countResult(price);
-		const temp = x.filter((y) => y.title !== title);
-		console.log(temp);
-		if (temp.length === 0) {
-			Cookies.set("productList", JSON.stringify([]), {expires: 1});
-			setEmpty(true);
-		} else Cookies.set("productList", JSON.stringify(temp), {expires: 1});
-		setX(temp);
-	}
-	useEffect(() => {
-		const cookieValue = Cookies.get("productList");
-		console.log("cart", cookieValue);
-		if (cookieValue) {
-			const parsedData = JSON.parse(cookieValue);
-			const totalPrice = parsedData.reduce((total, product) => total + (product.qty*parseFloat(product.newPrice)), 0);
-			
-			
-			
-			setTotal(totalPrice);
-			
-			setX(parsedData);
-		}
-	}, []);
+  const [cartItems, setCartItems] = useState([]);
+  const [total, setTotal] = useState(0);
+  const [isEmpty, setIsEmpty] = useState(true);
 
-	function countResult(add) {
-		setTotal((prev)=> prev+add);
-	}
+  useEffect(() => {
+    loadCartFromCookies();
+  }, []);
 
-	return (
-		<div className="flex flex-col justify-center items-center">
-			<div className="flex border-b-2 border-gray-300 p-2  fixed bg-white w-full h-10 top-0 left-0 justify-between items-center">
-				<Link className="flex items-center w-7 h-7" to="/">
-					<img src={homeP} alt="Shop" className="w-6 relative hover:w-7 " />
-				</Link>
-				<h1 className="text-rose-600 md:text-lg font-semibold font-mono">Shopping Cart</h1>
-				<div className="flex justify-around w-2/6 md:w-1/6">
-					<Link to="/products" className="w-7 h-7">
-						<img src={shop} alt="shop" className="w-6 relative hover:w-7 " />
-					</Link>
+  useEffect(() => {
+    calculateTotal();
+    setIsEmpty(cartItems.length === 0);
+  }, [cartItems]);
 
-					<Link to="/profile">
-						<AiOutlineUserAdd className="w-6 h-6" />
-					</Link>
-				</div>
-			</div>
-			{empty ? (
-				<div className=" flex mt-7 md:pt-6 h-96 justify-center items-center">
-					<MdProductionQuantityLimits className="w-40 h-40 text-gray-800" />
-					<p className="font-bold font-mono text-gray-800">Cart empty</p>
-				</div>
-			) : (
-				<>
-					<table className="  m-3 border-2 w-5/6 text-center mt-14	">
-						<thead className="border bg-gray-300 ">
-							<tr className="p-3 text-sm font-semibold ">
-								<th>Product</th>
-								<th>Name</th>
-								<th>Qty</th>
-								<th>Price</th>
-							</tr>
-						</thead>
-						<tbody>
-							{x.map((y) => (
-								<TableRow
-									countResult={countResult}
-									handleCloseClick={handleCloseClick}
-									newPrice={y.newPrice}
-									title={y.title}
-									img={y.img}
-									qty={y.qty}
-								/>
-							))}
-						</tbody>
-					</table>
-					<div className="flex justify-between mx-3 my-2 rounded-md items-center border-2 w-5/6  p-4 ">
-						<p className="font-medium">Sub-Total: ${total}</p>
-						<Link to="/checkout">
-							<button className="bg-blue-600 hover:bg-blue:700 px-2 h-8 rounded-lg text-white font-semibold ">Checkout</button>
-						</Link>
-					</div>
-				</>
-			)}
-		</div>
-	);
+  const loadCartFromCookies = () => {
+    const cookieValue = Cookies.get("productList");
+    if (cookieValue) {
+      try {
+        const parsedData = JSON.parse(cookieValue);
+        setCartItems(parsedData);
+      } catch (error) {
+        console.error("Error parsing cart data:", error);
+        setCartItems([]);
+      }
+    }
+  };
+
+  const calculateTotal = () => {
+    const newTotal = cartItems.reduce((sum, item) => {
+      return sum + (item.qty * parseFloat(item.newPrice));
+    }, 0);
+    setTotal(newTotal);
+  };
+
+  const updateQuantity = (title, newQty) => {
+    const updatedItems = cartItems.map(item => 
+      item.title === title ? { ...item, qty: newQty } : item
+    );
+    setCartItems(updatedItems);
+    Cookies.set("productList", JSON.stringify(updatedItems), { expires: 1 });
+  };
+
+  const removeItem = (title) => {
+    const updatedItems = cartItems.filter(item => item.title !== title);
+    setCartItems(updatedItems);
+    
+    if (updatedItems.length === 0) {
+      Cookies.set("productList", JSON.stringify([]), { expires: 1 });
+    } else {
+      Cookies.set("productList", JSON.stringify(updatedItems), { expires: 1 });
+    }
+  };
+
+  const clearCart = () => {
+    setCartItems([]);
+    Cookies.set("productList", JSON.stringify([]), { expires: 1 });
+  };
+
+  return (
+    <ThemeProvider>
+      <div className="min-h-screen bg-white dark:bg-nike-black">
+        {/* Navigation */}
+        <Navigation cartCount={cartItems.reduce((sum, item) => sum + item.qty, 0)} />
+
+        {/* Main Content */}
+        <div className="pt-20">
+          {/* Header */}
+          <motion.section
+            className="bg-gradient-to-r from-nike-gray-50 to-nike-gray-100 dark:from-nike-gray-900 dark:to-nike-black py-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <motion.div
+                className="flex items-center gap-4 mb-6"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Link to="/products">
+                  <motion.button
+                    className="p-2 hover:bg-nike-gray-200 dark:hover:bg-nike-gray-800 rounded-lg transition-colors"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <AiOutlineArrowLeft size={24} />
+                  </motion.button>
+                </Link>
+                <h1 className="nike-hero-text text-3xl md:text-4xl">
+                  Shopping <span className="text-nike-red">Cart</span>
+                </h1>
+              </motion.div>
+
+              {!isEmpty && (
+                <motion.div
+                  className="flex items-center justify-between"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                >
+                  <p className="nike-text">
+                    {cartItems.length} item{cartItems.length !== 1 ? 's' : ''} in your cart
+                  </p>
+                  <motion.button
+                    onClick={clearCart}
+                    className="text-nike-red hover:text-nike-red/80 text-sm font-medium"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    Clear Cart
+                  </motion.button>
+                </motion.div>
+              )}
+            </div>
+          </motion.section>
+
+          {/* Cart Content */}
+          <section className="py-8">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              {isEmpty ? (
+                <EmptyCart />
+              ) : (
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                  {/* Cart Items */}
+                  <div className="lg:col-span-2">
+                    <AnimatePresence mode="popLayout">
+                      {cartItems.map((item, index) => (
+                        <CartItem
+                          key={item.title}
+                          item={item}
+                          index={index}
+                          onUpdateQuantity={updateQuantity}
+                          onRemove={removeItem}
+                        />
+                      ))}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Order Summary */}
+                  <motion.div
+                    className="lg:col-span-1"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.6, delay: 0.3 }}
+                  >
+                    <div className="nike-card p-6 sticky top-24">
+                      <h3 className="nike-section-title text-xl mb-6">Order Summary</h3>
+                      
+                      <div className="space-y-4 mb-6">
+                        <div className="flex justify-between nike-text">
+                          <span>Subtotal</span>
+                          <span>${total.toFixed(2)}</span>
+                        </div>
+                        <div className="flex justify-between nike-text">
+                          <span>Shipping</span>
+                          <span className="text-green-600">Free</span>
+                        </div>
+                        <div className="flex justify-between nike-text">
+                          <span>Tax</span>
+                          <span>${(total * 0.08).toFixed(2)}</span>
+                        </div>
+                        <hr className="border-nike-gray-200 dark:border-nike-gray-700" />
+                        <div className="flex justify-between items-center">
+                          <span className="font-bold text-lg text-nike-black dark:text-white">Total</span>
+                          <span className="nike-price text-2xl">${(total * 1.08).toFixed(2)}</span>
+                        </div>
+                      </div>
+
+                      <div className="space-y-3">
+                        <Link to="/checkout" className="block">
+                          <motion.button
+                            className="nike-btn-primary w-full"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            PROCEED TO CHECKOUT
+                          </motion.button>
+                        </Link>
+                        
+                        <Link to="/products" className="block">
+                          <motion.button
+                            className="nike-btn-secondary w-full"
+                            whileHover={{ scale: 1.02 }}
+                            whileTap={{ scale: 0.98 }}
+                          >
+                            CONTINUE SHOPPING
+                          </motion.button>
+                        </Link>
+                      </div>
+
+                      {/* Security Badge */}
+                      <div className="mt-6 pt-6 border-t border-nike-gray-200 dark:border-nike-gray-700">
+                        <div className="flex items-center justify-center gap-2 nike-text text-sm">
+                          <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+                          </svg>
+                          Secure Checkout
+                        </div>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+              )}
+            </div>
+          </section>
+        </div>
+      </div>
+    </ThemeProvider>
+  );
 }
 
 export default Cart;

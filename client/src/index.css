@@ -1,19 +1,178 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Nike Design System Base Styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'Inter', 'Montserrat', system-ui, sans-serif;
+    @apply bg-white dark:bg-nike-black text-nike-black dark:text-white;
+  }
+  
+  * {
+    @apply transition-colors duration-300;
+  }
+}
 
+/* Nike Component Styles */
+@layer components {
+  .nike-btn-primary {
+    @apply bg-nike-red hover:bg-primary-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-nike active:scale-95;
+  }
+  
+  .nike-btn-secondary {
+    @apply bg-transparent border-2 border-nike-red text-nike-red hover:bg-nike-red hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105;
+  }
+  
+  .nike-btn-dark {
+    @apply bg-nike-black hover:bg-nike-gray-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-elegant;
+  }
+  
+  .nike-card {
+    @apply bg-white dark:bg-nike-gray-900 rounded-xl shadow-elegant hover:shadow-elegant-lg transition-all duration-300 transform hover:-translate-y-1 border border-nike-gray-200 dark:border-nike-gray-700;
+  }
+  
+  .nike-input {
+    @apply w-full px-4 py-3 border border-nike-gray-300 dark:border-nike-gray-600 rounded-lg focus:ring-2 focus:ring-nike-red focus:border-transparent bg-white dark:bg-nike-gray-800 text-nike-black dark:text-white placeholder-nike-gray-500 transition-all duration-300;
+  }
+  
+  .nike-nav {
+    @apply bg-white/80 dark:bg-nike-black/80 backdrop-blur-md border-b border-nike-gray-200 dark:border-nike-gray-700;
+  }
+  
+  .nike-hero-text {
+    @apply font-display font-bold text-4xl md:text-6xl lg:text-7xl text-nike-black dark:text-white leading-tight;
+  }
+  
+  .nike-section-title {
+    @apply font-display font-bold text-2xl md:text-4xl text-nike-black dark:text-white mb-4;
+  }
+  
+  .nike-text {
+    @apply text-nike-gray-600 dark:text-nike-gray-300 leading-relaxed;
+  }
+  
+  .nike-price {
+    @apply font-bold text-xl md:text-2xl text-nike-red;
+  }
+  
+  .nike-price-old {
+    @apply text-nike-gray-500 line-through text-sm md:text-base;
+  }
+}
 
+/* Custom Animations */
+@layer utilities {
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in-down {
+    animation: fadeInDown 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in-left {
+    animation: fadeInLeft 0.6s ease-out forwards;
+  }
+  
+  .animate-fade-in-right {
+    animation: fadeInRight 0.6s ease-out forwards;
+  }
+  
+  .animate-pulse-subtle {
+    animation: pulseSubtle 2s ease-in-out infinite;
+  }
+  
+  .animate-bounce-in {
+    animation: bounceIn 0.6s ease-out forwards;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Legacy styles for existing components */
 .transition-box {
   height: 5px;
   width: 90px;
   background-color: white;
   position: absolute;
-  bottom:5px;
-  /* z-index: 100; */
+  bottom: 5px;
   border-radius: 10px;
-  
-  transition: width 2s ease-in-out; /* Transition the 'width' property over 1 second with ease timing function */
+  transition: width 2s ease-in-out;
 }
 
 .transition-box.animate {
@@ -26,20 +185,46 @@
   padding: 10px;
   border-radius: 10px;
   font-weight: bold;
-  background-color: lightsalmon;
+  background-color: #e44c2c;
   color: white;
   position: fixed;
-  border: 2px solid wheat ;
+  border: 2px solid #f5f5dc;
   top: 12%;
- left: 50%;
-  /* right: 50%; */
+  left: 50%;
   transform: translate(-50%);
   display: flex;
-  z-index: 10;
+  z-index: 50;
   justify-content: center;
   text-align: center;
+  box-shadow: 0 10px 25px -5px rgba(228, 76, 44, 0.3);
 }
 
 .addedBox.animate {
   width: 0px;
+}
+
+/* Dark mode toggle styles */
+.dark-mode-toggle {
+  @apply relative inline-flex h-6 w-11 items-center rounded-full bg-nike-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-nike-red focus:ring-offset-2 dark:bg-nike-gray-600;
+}
+
+.dark-mode-toggle-button {
+  @apply inline-block h-4 w-4 transform rounded-full bg-white transition-transform dark:translate-x-6;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-nike-gray-100 dark:bg-nike-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-nike-gray-400 dark:bg-nike-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-nike-red;
 }

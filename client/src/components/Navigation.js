@@ -40,7 +40,7 @@ const Navigation = ({ cartCount = 0 }) => {
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                         >
-                            <span className="text-nike-red">NIKE</span>
+                            <span className="text-nike-red">Cool</span>
                             <span className="text-nike-black dark:text-white ml-2 font-light">STORE</span>
                         </motion.div>
                     </Link>

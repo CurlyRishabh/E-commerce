@@ -69,15 +69,16 @@ const HeroSection = ({ handleCart }) => {
         }} />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
+      <div className="relative z-10 w-full h-full">
+        <div className="flex flex-col lg:flex-row h-full min-h-screen">
+          {/* Left Content - Fixed Width */}
           <motion.div
-            className="text-center lg:text-left"
+            className="w-full lg:w-1/2 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
+            <div className="max-w-lg w-full text-center lg:text-left">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -158,24 +159,25 @@ const HeroSection = ({ handleCart }) => {
                 <div className="nike-text text-sm">Rating</div>
               </div>
             </motion.div>
+            </div>
           </motion.div>
 
-          {/* Right Content - Hero Image */}
+          {/* Right Content - Hero Image - Fixed Width */}
           <motion.div
-            className="relative"
+            className="relative flex flex-col w-full lg:w-1/2 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-20"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
             {/* Fixed Size Container */}
-            <div className="relative w-full h-[500px] md:h-[600px]">
+            <div className="relative w-full max-w-2xl h-[500px] md:h-[600px] lg:h-[700px]">
               {/* Background Circle */}
               <motion.div
                 className="absolute inset-0 bg-gradient-to-br from-nike-red/20 to-nike-red/5 rounded-full"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               />
-              
+
               {/* Shoe Images Container - Fixed Size */}
               <div className="relative z-10 w-full h-full flex items-center justify-center p-8">
                 {heroShoes.map((shoe, index) => (
@@ -222,7 +224,7 @@ const HeroSection = ({ handleCart }) => {
               {/* Navigation Arrows */}
               <motion.button
                 onClick={prevShoe}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/80 dark:bg-nike-gray-800/80 backdrop-blur-sm rounded-full p-3 shadow-elegant hover:bg-white dark:hover:bg-nike-gray-700 transition-colors"
+                className="absolute left-4 top-1/2 z-20 bg-white/80 dark:bg-nike-gray-800/80 backdrop-blur-sm rounded-full p-3 shadow-elegant hover:bg-white dark:hover:bg-nike-gray-700 transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -233,7 +235,7 @@ const HeroSection = ({ handleCart }) => {
 
               <motion.button
                 onClick={nextShoe}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 z-20 bg-white/80 dark:bg-nike-gray-800/80 backdrop-blur-sm rounded-full p-3 shadow-elegant hover:bg-white dark:hover:bg-nike-gray-700 transition-colors"
+                className="absolute right-4 top-1/2 z-20 bg-white/80 dark:bg-nike-gray-800/80 backdrop-blur-sm rounded-full p-3 shadow-elegant hover:bg-white dark:hover:bg-nike-gray-700 transition-colors"
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -261,7 +263,7 @@ const HeroSection = ({ handleCart }) => {
             </div>
 
             {/* Shoe Indicators */}
-            <div className="flex justify-center mt-8 space-x-2">
+            <div className="relative bottom-10 flex justify-center space-x-2">
               {heroShoes.map((_, index) => (
                 <motion.button
                   key={index}

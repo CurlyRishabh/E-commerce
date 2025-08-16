@@ -10,7 +10,7 @@ import data from "../../Database/data";
 import ProductCard from "../../components/ProductCard";
 
 // Import icons
-import { AiOutlineSearch, AiOutlineFilter, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineSearch, AiOutlineFilter, AiOutlineClose, AiOutlineDown } from "react-icons/ai";
 
 function ProductHome() {
   const [query, setQuery] = useState("");
@@ -22,6 +22,7 @@ function ProductHome() {
   const [priceRange, setPriceRange] = useState([0, 300]);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [isSortDropdownOpen, setIsSortDropdownOpen] = useState(false);
 
   // Categories and companies
   const categories = ["all", "sneakers", "flats", "heels", "sandals"];
@@ -177,16 +178,29 @@ function ProductHome() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                {/* Search Bar */}
+                {/* Enhanced Search Bar */}
                 <div className="relative flex-1 max-w-md">
-                  <AiOutlineSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-nike-gray-500" size={20} />
+                  <AiOutlineSearch className="absolute left-4 top-1/2 transform -translate-y-1/2 text-nike-gray-500 dark:text-nike-gray-400 z-10" size={20} />
                   <input
                     type="text"
                     placeholder="Search shoes, brands..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="nike-input pl-10 w-full"
+                    className="w-full pl-12 pr-4 py-4 text-base font-medium border-2 border-nike-gray-300 dark:border-nike-gray-600 rounded-xl focus:ring-2 focus:ring-nike-red focus:border-nike-red bg-white dark:bg-nike-gray-800 text-nike-black dark:text-white placeholder-nike-gray-500 dark:placeholder-nike-gray-400 transition-all duration-300 hover:border-nike-gray-400 dark:hover:border-nike-gray-500 shadow-sm hover:shadow-md focus:shadow-lg"
                   />
+                  {searchTerm && (
+                    <motion.button
+                      onClick={() => setSearchTerm("")}
+                      className="absolute right-3 top-1/2 transform -translate-y-1/2 p-1 hover:bg-nike-gray-100 dark:hover:bg-nike-gray-700 rounded-full transition-colors duration-200"
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0 }}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.9 }}
+                    >
+                      <AiOutlineClose className="text-nike-gray-500 dark:text-nike-gray-400" size={16} />
+                    </motion.button>
+                  )}
                 </div>
 
                 {/* Filter Toggle Button */}
@@ -200,18 +214,87 @@ function ProductHome() {
                   FILTERS
                 </motion.button>
 
-                {/* Sort Dropdown */}
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value)}
-                  className="nike-input min-w-[200px]"
-                >
-                  <option value="featured">Featured</option>
-                  <option value="price-low">Price: Low to High</option>
-                  <option value="price-high">Price: High to Low</option>
-                  <option value="name">Name: A to Z</option>
-                  <option value="company">Brand: A to Z</option>
-                </select>
+                {/* Custom Sort Dropdown */}
+                <div className="relative min-w-[200px]">
+                  <motion.button
+                    onClick={() => setIsSortDropdownOpen(!isSortDropdownOpen)}
+                    className="nike-input flex items-center justify-between w-full cursor-pointer hover:border-nike-red transition-all duration-300"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <span className="text-nike-black dark:text-white">
+                      {sortBy === "featured" && "Featured"}
+                      {sortBy === "price-low" && "Price: Low to High"}
+                      {sortBy === "price-high" && "Price: High to Low"}
+                      {sortBy === "name" && "Name: A to Z"}
+                      {sortBy === "company" && "Brand: A to Z"}
+                    </span>
+                    <motion.div
+                      animate={{ rotate: isSortDropdownOpen ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <AiOutlineDown className="text-nike-gray-500" size={16} />
+                    </motion.div>
+                  </motion.button>
+
+                  <AnimatePresence>
+                    {isSortDropdownOpen && (
+                      <>
+                        {/* Backdrop */}
+                        <div
+                          className="fixed inset-0 z-10"
+                          onClick={() => setIsSortDropdownOpen(false)}
+                        />
+                        
+                        {/* Dropdown Menu */}
+                        <motion.div
+                          className="absolute top-full left-0 right-0 mt-2 bg-white dark:bg-nike-gray-900 border border-nike-gray-200 dark:border-nike-gray-700 rounded-lg shadow-elegant-lg z-20 overflow-hidden"
+                          initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {[
+                            { value: "featured", label: "Featured" },
+                            { value: "price-low", label: "Price: Low to High" },
+                            { value: "price-high", label: "Price: High to Low" },
+                            { value: "name", label: "Name: A to Z" },
+                            { value: "company", label: "Brand: A to Z" }
+                          ].map((option, index) => (
+                            <motion.button
+                              key={option.value}
+                              onClick={() => {
+                                setSortBy(option.value);
+                                setIsSortDropdownOpen(false);
+                              }}
+                              className={`w-full px-4 py-3 text-left hover:bg-nike-gray-50 dark:hover:bg-nike-gray-800 transition-colors duration-200 ${
+                                sortBy === option.value
+                                  ? "bg-nike-red/10 text-nike-red border-l-4 border-nike-red"
+                                  : "text-nike-black dark:text-white"
+                              }`}
+                              initial={{ opacity: 0, x: -10 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              transition={{ duration: 0.1, delay: index * 0.05 }}
+                              whileHover={{ x: 4 }}
+                            >
+                              <span className="font-medium">{option.label}</span>
+                              {sortBy === option.value && (
+                                <motion.div
+                                  className="inline-block ml-2"
+                                  initial={{ scale: 0 }}
+                                  animate={{ scale: 1 }}
+                                  transition={{ duration: 0.2 }}
+                                >
+                                  ✓
+                                </motion.div>
+                              )}
+                            </motion.button>
+                          ))}
+                        </motion.div>
+                      </>
+                    )}
+                  </AnimatePresence>
+                </div>
               </motion.div>
             </div>
           </motion.section>

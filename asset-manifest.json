@@ -1,21 +1,18 @@
 {
   "files": {
-    "main.css": "/E-commerce/static/css/main.acf1237a.css",
-    "main.js": "/E-commerce/static/js/main.d38d44e4.js",
-    "static/media/skate-puma.png": "/E-commerce/static/media/skate-puma.9d75281634412e2bb7b5.png",
+    "main.css": "/E-commerce/static/css/main.48cb08fa.css",
+    "main.js": "/E-commerce/static/js/main.f6c66d24.js",
     "static/media/nike-air-max-sneakers.png": "/E-commerce/static/media/nike-air-max-sneakers.bf2c2fef0b81edcfa845.png",
-    "static/media/Nike-Air-force-yellow.png": "/E-commerce/static/media/Nike-Air-force-yellow.364336c5e864549c981a.png",
-    "static/media/snaeker-puma.png": "/E-commerce/static/media/snaeker-puma.18cc5516b2ce57e50bf9.png",
-    "static/media/Nike-dunk-skate-white.png": "/E-commerce/static/media/Nike-dunk-skate-white.57ac42b98b6228808c1e.png",
-    "static/media/nike-air-max-red.png": "/E-commerce/static/media/nike-air-max-red.e8da30b944d005327cd6.png",
-    "static/media/nik-air-max-blue.png": "/E-commerce/static/media/nik-air-max-blue.92533136e442ffebdbc9.png",
-    "static/media/reebok-skate-sneaker.png": "/E-commerce/static/media/reebok-skate-sneaker.a1dfcaf105a3433230db.png",
+    "static/media/Nike-air-max-97.png": "/E-commerce/static/media/Nike-air-max-97.2eb6235fb854b7651e57.png",
+    "static/media/air-force-yellow.png": "/E-commerce/static/media/air-force-yellow.23fe0f9a032f2df736fc.png",
+    "static/media/nike-air-max-red.png": "/E-commerce/static/media/nike-air-max-red.37d064a0a75d13cd83c2.png",
+    "static/media/nik-air-max-blue.png": "/E-commerce/static/media/nik-air-max-blue.4383a238e10bc9428160.png",
     "index.html": "/E-commerce/index.html",
-    "main.acf1237a.css.map": "/E-commerce/static/css/main.acf1237a.css.map",
-    "main.d38d44e4.js.map": "/E-commerce/static/js/main.d38d44e4.js.map"
+    "main.48cb08fa.css.map": "/E-commerce/static/css/main.48cb08fa.css.map",
+    "main.f6c66d24.js.map": "/E-commerce/static/js/main.f6c66d24.js.map"
   },
   "entrypoints": [
-    "static/css/main.acf1237a.css",
-    "static/js/main.d38d44e4.js"
+    "static/css/main.48cb08fa.css",
+    "static/js/main.f6c66d24.js"
   ]
 }

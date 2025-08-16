@@ -10,7 +10,6 @@ import Preview from "./preview";
 import {useState} from "react";
 import Cookies from "js-cookie";
 
-import Added from "../../Cart/Added";
 
 export default function Card(props) {
 	const [show, setShow] = useState(false);

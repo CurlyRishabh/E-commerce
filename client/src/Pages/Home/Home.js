@@ -5,8 +5,7 @@ import { ThemeProvider } from "../../contexts/ThemeContext";
 import Navigation from "../../components/Navigation";
 import HeroSection from "../../components/HeroSection";
 import ProductGrid from "../../components/ProductGrid";
-import Added from "../Cart/Added";
-
+import NotificationSystem from "../Cart/NotificationSystem";
 // Import existing components that we'll keep
 import Testimonials from "./Testimonials";
 import Footer from "./Footer";
@@ -52,12 +51,9 @@ export default function Home() {
   }
 
   function handleCart(name, pic, cost) {
-    // Show added to cart notification
-    setShow((prev) => !prev);
-    setTimeout(() => {
-      setShow((prev) => !prev);
-    }, 2500);
-
+    if (window.addNotification) {
+      window.addNotification("Added to cart");
+    }
     const item = {
       title: name,
       img: pic,
@@ -72,8 +68,7 @@ export default function Home() {
     <ThemeProvider>
       <div className="min-h-screen bg-white dark:bg-nike-black">
         {/* Added to Cart Notification */}
-        {show && <Added />}
-
+        <NotificationSystem />
         {/* Navigation */}
         <Navigation cartCount={cartCount} />
 
@@ -81,14 +76,14 @@ export default function Home() {
         <HeroSection handleCart={handleCart} />
 
         {/* Best Sellers Section */}
-        <ProductGrid 
+        <ProductGrid
           handleCart={handleCart}
           title="Best Sellers"
           limit={8}
         />
 
         {/* Featured Collections Section */}
-        <motion.section 
+        <motion.section
           className="py-16 bg-nike-gray-50 dark:bg-nike-gray-900"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -105,7 +100,7 @@ export default function Home() {
             >
               <h2 className="nike-section-title">Featured Collections</h2>
               <p className="nike-text max-w-2xl mx-auto">
-                Explore our handpicked collections featuring the latest trends and timeless classics 
+                Explore our handpicked collections featuring the latest trends and timeless classics
                 that define modern athletic style.
               </p>
             </motion.div>
@@ -215,7 +210,7 @@ export default function Home() {
         </motion.section>
 
         {/* New Arrivals Section */}
-        <ProductGrid 
+        <ProductGrid
           handleCart={handleCart}
           title="New Arrivals"
           limit={4}

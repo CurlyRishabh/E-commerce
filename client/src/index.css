@@ -179,29 +179,7 @@
   width: 0px;
 }
 
-.addedBox {
-  width: 120px;
-  height: 80px;
-  padding: 10px;
-  border-radius: 10px;
-  font-weight: bold;
-  background-color: #e44c2c;
-  color: white;
-  position: fixed;
-  border: 2px solid #f5f5dc;
-  top: 12%;
-  left: 50%;
-  transform: translate(-50%);
-  display: flex;
-  z-index: 50;
-  justify-content: center;
-  text-align: center;
-  box-shadow: 0 10px 25px -5px rgba(228, 76, 44, 0.3);
-}
 
-.addedBox.animate {
-  width: 0px;
-}
 
 /* Dark mode toggle styles */
 .dark-mode-toggle {

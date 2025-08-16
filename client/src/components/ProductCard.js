@@ -2,18 +2,18 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { AiFillStar, AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 
-const ProductCard = ({ 
-  img, 
-  title, 
-  star, 
-  reviews, 
-  prevPrice, 
-  newPrice, 
-  company, 
-  color, 
-  category, 
+const ProductCard = ({
+  img,
+  title,
+  star,
+  reviews,
+  prevPrice,
+  newPrice,
+  company,
+  color,
+  category,
   handleCart,
-  index = 0 
+  index = 0
 }) => {
   const [isLiked, setIsLiked] = useState(false);
   const [isImageLoaded, setIsImageLoaded] = useState(false);
@@ -25,13 +25,13 @@ const ProductCard = ({
   };
 
   const cardVariants = {
-    hidden: { 
-      opacity: 0, 
+    hidden: {
+      opacity: 0,
       y: 50,
       scale: 0.9
     },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       scale: 1,
       transition: {
@@ -44,8 +44,8 @@ const ProductCard = ({
 
   const imageVariants = {
     hidden: { scale: 1.2, opacity: 0 },
-    visible: { 
-      scale: 1, 
+    visible: {
+      scale: 1,
       opacity: 1,
       transition: { duration: 0.6, ease: "easeOut" }
     }
@@ -128,7 +128,7 @@ const ProductCard = ({
           <span className="px-2 py-1 bg-nike-gray-100 dark:bg-nike-gray-700 text-nike-gray-600 dark:text-nike-gray-300 text-xs rounded-full capitalize">
             {category}
           </span>
-          <div 
+          <div
             className="w-4 h-4 rounded-full border-2 border-nike-gray-300 dark:border-nike-gray-600"
             style={{ backgroundColor: color === 'white' ? '#ffffff' : color }}
             title={color}
@@ -143,7 +143,7 @@ const ProductCard = ({
               <span className="nike-price-old">${prevPrice}</span>
             )}
           </div>
-          
+
           {/* Discount Badge */}
           {prevPrice && prevPrice !== newPrice && (
             <span className="px-2 py-1 bg-nike-red text-white text-xs font-semibold rounded-full">

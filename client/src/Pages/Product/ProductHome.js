@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 import { ThemeProvider } from "../../contexts/ThemeContext";
 import Navigation from "../../components/Navigation";
 import ProductGrid from "../../components/ProductGrid";
-import Added from "../Cart/Added";
+import NotificationSystem from "../Cart/NotificationSystem";
 import data from "../../Database/data";
 // Import ProductCard component
 import ProductCard from "../../components/ProductCard";
@@ -14,7 +14,6 @@ import { AiOutlineSearch, AiOutlineFilter, AiOutlineClose } from "react-icons/ai
 
 function ProductHome() {
   const [query, setQuery] = useState("");
-  const [show, setShow] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [filteredProducts, setFilteredProducts] = useState(data);
   const [sortBy, setSortBy] = useState("featured");
@@ -46,10 +45,10 @@ function ProductHome() {
 
   function handleCartCount() {
     setCartCount((prev) => prev + 1);
-    setShow((prev) => !prev);
-    setTimeout(() => {
-      setShow((prev) => !prev);
-    }, 2500);
+    // Trigger notification using the global function
+    if (window.addNotification) {
+      window.addNotification("Added to cart");
+    }
   }
 
   function handleCart(name, pic, cost) {
@@ -139,8 +138,8 @@ function ProductHome() {
   return (
     <ThemeProvider>
       <div className="min-h-screen bg-white dark:bg-nike-black">
-        {/* Added to Cart Notification */}
-        {show && <Added />}
+        {/* Notification System */}
+        <NotificationSystem />
 
         {/* Navigation */}
         <Navigation cartCount={cartCount} />
@@ -359,7 +358,7 @@ function ProductHome() {
                 <p className="nike-text">
                   Showing {filteredProducts.length} of {data.length} products
                 </p>
-                
+
                 {(activeCategory !== "all" || activeCompany !== "all" || searchTerm) && (
                   <button
                     onClick={clearFilters}
